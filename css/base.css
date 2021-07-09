@@ -1,0 +1,39 @@
+body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+} 
+
+@media (prefers-color-scheme: dark) {
+    header {
+        height: 45px;
+        background-color: #080A1C;
+    }
+
+    header a {
+        color: white;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    header {
+        height: 45px;
+        background-color: #9ca0c5;
+    }
+
+    header a {
+        color: black;
+    }
+}
+
+header {
+    height: 45px;
+}
+
+header ul {
+    margin: 0px;
+}
+
+header a {
+    line-height: 45px;
+    font-size: 20px;
+}
