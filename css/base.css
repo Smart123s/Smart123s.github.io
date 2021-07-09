@@ -4,15 +4,6 @@ body, html {
 } 
 
 @media (prefers-color-scheme: dark) {
-    header {
-        height: 45px;
-        background-color: #080A1C;
-    }
-
-    header a {
-        color: white;
-    }
-
     body {
         background-color: #131313;
     }
@@ -33,27 +24,10 @@ body, html {
         background-color: #9ca0c5;
     }
 
-    header a {
-        color: black;
-    }
-
     .profile img {
         box-shadow: 0 0 8px #154b00;
         border-color: #154b00;
     }
-}
-
-header {
-    height: 45px;
-}
-
-header ul {
-    margin: 0px;
-}
-
-header a {
-    line-height: 45px;
-    font-size: 20px;
 }
 
 .profile {
