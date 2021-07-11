@@ -19,11 +19,6 @@ body, html {
 }
 
 @media (prefers-color-scheme: light) {
-    header {
-        height: 45px;
-        background-color: #9ca0c5;
-    }
-
     .profile img {
         box-shadow: 0 0 8px #154b00;
         border-color: #154b00;
