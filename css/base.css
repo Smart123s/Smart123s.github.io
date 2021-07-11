@@ -8,7 +8,7 @@ body, html {
         background-color: #131313;
     }
 
-    .profile {
+    .profile, p {
         color: white;
     }
 
@@ -71,4 +71,14 @@ body, html {
 
     font-size: 50px;
     font-family: "Concert One", serif;
+}
+
+footer {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+}
+
+footer p { 
+    text-align: center;
 }
