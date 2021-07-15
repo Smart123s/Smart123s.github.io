@@ -34,6 +34,9 @@ body, html {
     left: 50%;
     right: 50%;
     transform: translate(-50%, -50%);
+
+    height: 60%;
+    max-height: 300px;
 }
 
 .profile img {
@@ -43,8 +46,9 @@ body, html {
     border-width: 4px;
 
     /* size */
-    width: 150px;
+    width: auto;
     height: 150px;
+    max-height: 60%;
     object-fit: cover;
 
     /* center */
@@ -64,7 +68,7 @@ body, html {
     margin-top: 15px;
     margin-bottom: 0px;
 
-    font-size: 50px;
+    font-size: min(50px, 12vh);
     font-family: "Concert One", serif;
 }
 
