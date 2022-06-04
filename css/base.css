@@ -102,15 +102,22 @@ footer p {
     text-align: center;
 }
 
+header {
+    display: flex;
+    justify-content: center;
+}
+
 .navbar {
     position: absolute;
     width: calc(100% - 10px);
 
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+
     padding: 5px;
-    margin: 0px;
     margin-top: 5px;
 
-    direction: rtl;
     list-style-type: none;
 
     font-size: 14px;
@@ -122,9 +129,4 @@ footer p {
 .navbar li {
     display: inline;
     padding: 5px;
-}
-
-.navbar li:first-child {
-    padding-top: 0px;
-    float: left;
 }
