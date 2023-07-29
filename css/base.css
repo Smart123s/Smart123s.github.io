@@ -29,8 +29,8 @@ body, html {
 
 @media (prefers-color-scheme: light) {
     .profile .profile-photo {
-        box-shadow: 0 0 8px #154b00;
-        border-color: #154b00;
+        box-shadow: 0 0 8px #515151;
+        border-color: #ffffff;
     }
 }
 
