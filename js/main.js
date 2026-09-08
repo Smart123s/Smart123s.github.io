@@ -23,11 +23,22 @@
   function applyLanguage(lang) {
     document.documentElement.lang = lang;
     var isHu = lang === 'hu';
-    document.title = isHu ? 'Tombor Péter' : 'Péter Tombor';
+    var titleEl = document.querySelector('title');
+    if (titleEl && titleEl.getAttribute('data-title-hu') && titleEl.getAttribute('data-title-en')) {
+      document.title = isHu ? titleEl.getAttribute('data-title-hu') : titleEl.getAttribute('data-title-en');
+    } else {
+      document.title = isHu ? 'Tombor Péter' : 'Péter Tombor';
+    }
 
     var descMeta = document.querySelector('meta[name="description"]');
     if (descMeta) {
-      descMeta.setAttribute('content', isHu ? 'Tombor Péter személyes weboldala' : "Péter Tombor's personal website");
+      var descHu = descMeta.getAttribute('data-desc-hu');
+      var descEn = descMeta.getAttribute('data-desc-en');
+      if (descHu && descEn) {
+        descMeta.setAttribute('content', isHu ? descHu : descEn);
+      } else {
+        descMeta.setAttribute('content', isHu ? 'Tombor Péter személyes weboldala' : "Péter Tombor's personal website");
+      }
     }
 
     var scrollLink = document.querySelector('.scroll-indicator');
