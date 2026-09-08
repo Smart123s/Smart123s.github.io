@@ -64,6 +64,15 @@
         avatarBtn.setAttribute('title', label);
       }
     }
+
+    document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
+      var isCopied = btn.classList.contains('is-copied');
+      if (isCopied) {
+        btn.setAttribute('aria-label', isHu ? 'Másolva a vágólapra' : 'Copied to clipboard');
+      } else {
+        btn.setAttribute('aria-label', isHu ? 'Kód másolása a vágólapra' : 'Copy code to clipboard');
+      }
+    });
   }
 
   function init() {
@@ -100,6 +109,27 @@
           localStorage.setItem('lang', targetLang);
           applyLanguage(targetLang);
         }
+      });
+    });
+
+    document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var targetSelector = btn.getAttribute('data-clipboard-target');
+        var targetEl = targetSelector ? document.querySelector(targetSelector) : null;
+        if (!targetEl) return;
+        var text = (targetEl.innerText || targetEl.textContent || '').trim();
+        navigator.clipboard.writeText(text).then(function() {
+          btn.classList.add('is-copied');
+          var isHu = document.documentElement.lang === 'hu';
+          btn.setAttribute('aria-label', isHu ? 'Másolva a vágólapra' : 'Copied to clipboard');
+          if (btn._copyTimeout) clearTimeout(btn._copyTimeout);
+          btn._copyTimeout = setTimeout(function() {
+            btn.classList.remove('is-copied');
+            btn.setAttribute('aria-label', isHu ? 'Kód másolása a vágólapra' : 'Copy code to clipboard');
+          }, 2000);
+        }).catch(function(err) {
+          console.error('Failed to copy text: ', err);
+        });
       });
     });
   }

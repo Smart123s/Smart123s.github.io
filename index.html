@@ -623,6 +623,160 @@
       </ul>
     </section>
 
+    <section id="gpg" class="section">
+      <h2 class="section-title">
+        <span data-lang="en">GPG Key</span>
+        <span data-lang="hu">GPG kulcs</span>
+      </h2>
+      <p class="section-desc" data-lang="en">Public keys for encrypted communication, SSH authentication, and code signing.</p>
+      <p class="section-desc" data-lang="hu">Nyilvános kulcsok titkosított kommunikációhoz, SSH azonosításhoz és kódaláíráshoz.</p>
+
+      <div class="gpg-card">
+        <div class="gpg-header">
+          <div class="gpg-header-info">
+            <img src="svg/key-solid.svg" alt="Key icon" class="gpg-icon" data-alt-en="Key icon" data-alt-hu="Kulcs ikon" width="22" height="22">
+            <div>
+              <h3 class="gpg-card-title">Péter Tombor (0xE2EF0FE5)</h3>
+              <p class="gpg-card-subtitle">
+                <span data-lang="en">Algorithm: Ed25519 / Cv25519 &bull; Created: April 2023</span>
+                <span data-lang="hu">Algoritmus: Ed25519 / Cv25519 &bull; Létrehozva: 2023. április</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gpg-meta-details">
+          <div class="gpg-meta-row">
+            <span class="gpg-meta-label">
+              <span data-lang="en">Fingerprint</span>
+              <span data-lang="hu">Ujjlenyomat</span>
+            </span>
+            <code class="gpg-fingerprint">2FB9 B0AA 395F 85E3 D6CD  2C78 D72C 3EDA E2EF 0FE5</code>
+          </div>
+          <div class="gpg-meta-row">
+            <span class="gpg-meta-label">
+              <span data-lang="en">Identities</span>
+              <span data-lang="hu">Azonosítók</span>
+            </span>
+            <ul class="gpg-uid-list">
+              <li>Péter Tombor &lt;public@tmbpeter.com&gt;</li>
+              <li>Péter Tombor &lt;28480228+Smart123s@users.noreply.github.com&gt;</li>
+              <li>Péter Tombor &lt;7324473-Smart123s@users.noreply.gitlab.com&gt;</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="gpg-downloads-area">
+          <span class="gpg-downloads-label">
+            <span data-lang="en">Direct Downloads &amp; Keyserver:</span>
+            <span data-lang="hu">Közvetlen letöltések és kulcsszerver:</span>
+          </span>
+          <div class="gpg-download-links">
+            <a href="gpg/2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.asc" download="2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.asc" class="badge-link">
+              OpenPGP (.asc)
+            </a>
+            <a href="gpg/id_ed25519.pub" download="id_ed25519.pub" class="badge-link">
+              OpenSSH (.pub)
+            </a>
+            <a href="gpg/2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.gpg" download="2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.gpg" class="badge-link">
+              Binary (.gpg)
+            </a>
+            <a href="https://keys.openpgp.org/vks/v1/by-fingerprint/2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5" target="_blank" rel="noopener noreferrer" class="badge-link">
+              keys.openpgp.org (VKS)
+            </a>
+            <a href="https://keys.openpgp.org/search?q=2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5" target="_blank" rel="noopener noreferrer" class="badge-link">
+              <span data-lang="en">Keyserver Search</span>
+              <span data-lang="hu">Keresés kulcsszerveren</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="code-blocks-wrapper">
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-title-group">
+                <span class="code-block-format">PGP</span>
+                <span class="code-block-title">
+                  <span data-lang="en">OpenPGP Public Key Block (ASCII Armored)</span>
+                  <span data-lang="hu">OpenPGP nyilvános kulcsblokk (ASCII Armored)</span>
+                </span>
+              </div>
+              <button type="button" class="code-copy-btn" data-clipboard-target="#pgp-key-content" aria-label="Copy code to clipboard">
+                <svg class="code-copy-icon icon-copy" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <svg class="code-copy-icon icon-check" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span class="copy-text copy-default">
+                  <span data-lang="en">Copy</span>
+                  <span data-lang="hu">Másolás</span>
+                </span>
+                <span class="copy-text copy-copied">
+                  <span data-lang="en">Copied!</span>
+                  <span data-lang="hu">Másolva!</span>
+                </span>
+              </button>
+            </div>
+            <pre class="code-block-pre code-block-scrollable"><code id="pgp-key-content">-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEZEYdnRYJKwYBBAHaRw8BAQdAmygOhcRiqJgy711VL8zLDozN6PGDVX/xmrsb
+BHBJC3W0I1DDqXRlciBUb21ib3IgPHB1YmxpY0B0bWJwZXRlci5jb20+iJwEExYK
+AEQCGyMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4ACGQEWIQQvubCqOV+F49bN
+LHjXLD7a4u8P5QUCadN8XwUJCzL7BgAKCRDXLD7a4u8P5WZPAPsEDQ2dHT1d97bE
+r0pG/mnGrh/MghD0KP70AocwTwZ3RQD/V7BulCUFf3BvCfrFJ6nq1w+cDNRIw39G
+qkEFSt/gKgy0O1DDqXRlciBUb21ib3IgPDI4NDgwMjI4K1NtYXJ0MTIzc0B1c2Vy
+cy5ub3JlcGx5LmdpdGh1Yi5jb20+iJkEExYKAEECGyMFCwkIBwICIgIGFQoJCAsC
+BBYCAwECHgcCF4AWIQQvubCqOV+F49bNLHjXLD7a4u8P5QUCadN8ZAUJCzL7BgAK
+CRDXLD7a4u8P5YLqAP0SXpOJEtlbkPWw+C3N0BF5UdPeCGS/HTwI8Zr76G1kMgD+
+JAwXK27/jcQ61yJ/LUAX6dZ9j99nZyMCWCd9s3x/NAm0OlDDqXRlciBUb21ib3Ig
+PDczMjQ0NzMtU21hcnQxMjNzQHVzZXJzLm5vcmVwbHkuZ2l0bGFiLmNvbT6ImQQT
+FgoAQQIbIwULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIXgBYhBC+5sKo5X4Xj1s0s
+eNcsPtri7w/lBQJp03xkBQkLMvsGAAoJENcsPtri7w/lWaQBAMeTe5PB8WIp2EVx
+q5pS0Lth5Z0b7iKblUfRqVzljHFbAP9zWPN1W1VwDZWa1mx07r467otyX+YpOcCr
+2FTxTKE/CLg4BGRGHZ0SCisGAQQBl1UBBQEBB0ACjZVXkhcCrC6F+V4cXt2nNw+W
+6aRCnihqaGzl7w8QfQMBCAeIfgQYFgoAJgIbDBYhBC+5sKo5X4Xj1s0seNcsPtri
+7w/lBQJp03xkBQkLMvsLAAoJENcsPtri7w/lBRsA/A/pXi3j48cDJ93c0fpdqhWp
+XjVPXTvw+8OoZ+7wukqfAQDZB2gURr8hi4gBZYZHQxBjyjWhmA7NRQUyADPdN+D+
+DA==
+=EgsJ
+-----END PGP PUBLIC KEY BLOCK-----</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-title-group">
+                <span class="code-block-format">SSH</span>
+                <span class="code-block-title">
+                  <span data-lang="en">OpenSSH Public Key (Authentication)</span>
+                  <span data-lang="hu">OpenSSH nyilvános kulcs (Azonosítás)</span>
+                </span>
+              </div>
+              <button type="button" class="code-copy-btn" data-clipboard-target="#ssh-key-content" aria-label="Copy code to clipboard">
+                <svg class="code-copy-icon icon-copy" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <svg class="code-copy-icon icon-check" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span class="copy-text copy-default">
+                  <span data-lang="en">Copy</span>
+                  <span data-lang="hu">Másolás</span>
+                </span>
+                <span class="copy-text copy-copied">
+                  <span data-lang="en">Copied!</span>
+                  <span data-lang="hu">Másolva!</span>
+                </span>
+              </button>
+            </div>
+            <pre class="code-block-pre"><code id="ssh-key-content">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJsoDoXEYqiYMu9dVS/Myw6Mzejxg1V/8Zq7GwRwSQt1 openpgp:0xE2EF0FE5</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="section">
       <h2 class="section-title">
         <span data-lang="en">Contact</span>

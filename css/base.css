@@ -28,7 +28,8 @@
 
     .graduation-cap,
     .driving-icon,
-    .contact-icon {
+    .contact-icon,
+    .gpg-icon {
         -webkit-filter: invert(1);
         filter: invert(1);
     }
@@ -750,6 +751,327 @@ body {
     .language-level,
     .driving-level {
         padding-left: 36px;
+    }
+}
+ 
+/* GPG Section & Code Blocks */
+.gpg-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.015);
+    padding: 20px 24px;
+    margin-top: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .gpg-card {
+        background-color: rgba(255, 255, 255, 0.02);
+    }
+}
+
+.gpg-header-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.gpg-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: block;
+}
+
+.gpg-card-title {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--heading-color);
+    line-height: 1.3;
+}
+
+.gpg-card-subtitle {
+    margin: 3px 0 0 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.gpg-meta-details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.gpg-meta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gpg-meta-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.gpg-fingerprint {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px 12px;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    color: var(--text-color);
+    user-select: all;
+    display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+    .gpg-fingerprint {
+        background-color: rgba(255, 255, 255, 0.04);
+    }
+}
+
+.gpg-uid-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.gpg-uid-list li {
+    font-size: 13px;
+    color: var(--text-color);
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.gpg-downloads-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.gpg-downloads-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.gpg-download-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Code Blocks */
+.code-blocks-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 4px;
+}
+
+.code-block {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #f6f8fa;
+    overflow: hidden;
+    position: relative;
+}
+
+@media (prefers-color-scheme: dark) {
+    .code-block {
+        background-color: #161b22;
+    }
+}
+
+.code-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid var(--border-color);
+    gap: 10px;
+    user-select: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .code-block-header {
+        background-color: rgba(255, 255, 255, 0.03);
+    }
+}
+
+.code-block-title-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.code-block-format {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.07);
+    color: var(--text-color);
+    flex-shrink: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .code-block-format {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+.code-block-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.code-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    outline: none;
+}
+
+.code-copy-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: var(--text-muted);
+}
+
+@media (prefers-color-scheme: dark) {
+    .code-copy-btn:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+    }
+}
+
+.code-copy-btn:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 1px;
+}
+
+.code-copy-btn.is-copied {
+    color: #1a7f37;
+    border-color: #1a7f37;
+}
+
+@media (prefers-color-scheme: dark) {
+    .code-copy-btn.is-copied {
+        color: #3fb950;
+        border-color: #3fb950;
+    }
+}
+
+.code-copy-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    display: block;
+}
+
+.code-copy-btn .icon-check {
+    display: none;
+}
+
+.code-copy-btn.is-copied .icon-copy {
+    display: none;
+}
+
+.code-copy-btn.is-copied .icon-check {
+    display: block;
+}
+
+.code-copy-btn .copy-copied {
+    display: none;
+}
+
+.code-copy-btn.is-copied .copy-default {
+    display: none;
+}
+
+.code-copy-btn.is-copied .copy-copied {
+    display: inline;
+}
+
+.code-block-pre {
+    margin: 0;
+    padding: 12px 14px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--text-color);
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+.code-block-pre code {
+    font-family: inherit;
+    font-size: inherit;
+    white-space: pre;
+}
+
+.code-block-scrollable {
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+@media (max-width: 600px) {
+    .gpg-card {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .code-block-title {
+        font-size: 12px;
+    }
+
+    .code-copy-btn {
+        padding: 3px 8px;
+        font-size: 11px;
+    }
+
+    .code-block-pre {
+        padding: 10px 12px;
+        font-size: 11.5px;
     }
 }
 
