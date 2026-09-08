@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 
 <head>
   <meta charset="UTF-8">
@@ -11,28 +11,55 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Concert+One&family=Inter:wght@400;500;600;700&display=swap">
+  <script src="js/main.js"></script>
 </head>
 
 <body>
   <header class="profile-hero">
+    <noscript>
+      <div class="no-js-indicator" tabindex="0" role="note" aria-label="Language switcher is not available without JavaScript">
+        <svg class="no-js-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <span class="no-js-tooltip">Language switcher is not available without JavaScript</span>
+      </div>
+    </noscript>
+
+    <nav class="lang-switch" aria-label="Language selector">
+      <button type="button" class="lang-btn active" data-lang-target="en" aria-label="Switch to English" aria-pressed="true">EN</button>
+      <span class="lang-divider" aria-hidden="true">/</span>
+      <button type="button" class="lang-btn" data-lang-target="hu" aria-label="Váltás magyar nyelvre" aria-pressed="false">HU</button>
+    </nav>
+
     <div class="profile">
-      <img src="img/profile-512w.jpg" class="profile-photo" alt="Profile picture">
-      <h1 class="name">Péter Tombor</h1>
+      <img src="img/profile-512w.jpg" class="profile-photo" alt="Profile picture" data-alt-en="Profile picture" data-alt-hu="Profilkép">
+      <h1 class="name">
+        <span data-lang="en">Péter Tombor</span>
+        <span data-lang="hu">Tombor Péter</span>
+      </h1>
       <p class="work">
         <img src="svg/graduation-cap-solid.svg" class="graduation-cap" alt="" title="Source: https://fontawesome.com/v6.0/icons?q=graduation&s=solid%2Cbrands">
-        Student at University of Pannonia
+        <span data-lang="en">Student at University of Pannonia</span>
+        <span data-lang="hu">A Pannon Egyetem hallgatója</span>
       </p>
     </div>
     <a href="#research" class="scroll-indicator" aria-label="Scroll down to content">
-      <span>Scroll</span>
+      <span data-lang="en">Scroll</span>
+      <span data-lang="hu">Görgess</span>
       <span class="scroll-arrow">&#x25BE;</span>
     </a>
   </header>
 
   <main class="content-container">
     <section id="research" class="section">
-      <h2 class="section-title">Research</h2>
-      <p class="section-desc">My published research papers.</p>
+      <h2 class="section-title">
+        <span data-lang="en">Research</span>
+        <span data-lang="hu">Kutatás</span>
+      </h2>
+      <p class="section-desc" data-lang="en">My published research papers.</p>
+      <p class="section-desc" data-lang="hu">Publikált tudományos cikkeim.</p>
       <div class="entry-list">
         <article class="entry-item">
           <div class="entry-header">
@@ -44,12 +71,16 @@
           </div>
           <p class="entry-meta"><strong>Péter Tombor</strong>, János Abonyi</p>
           <p class="entry-submeta"><em>IEEE Access</em>, 2026</p>
-          <p class="entry-desc">
+          <p class="entry-desc" data-lang="en">
             This research introduces a formal Total Cost of Ownership (TCO) framework grounded in Activity-Based Costing (ABC) tailored to the unique economics of Generative AI. It models LLM-specific cost drivers—such as token consumption, Retrieval-Augmented Generation (RAG) operations, and agentic inference steps—combining a provably convex infrastructure cost engine with an operational and governance taxonomy. Validated across production deployments with sub-5% forecasting error, the framework provides strategic decision support for evaluating architectural trade-offs, such as dynamic RAG versus fine-tuned models.
           </p>
+          <p class="entry-desc" data-lang="hu">
+            Ez a kutatás egy tevékenységalapú költségszámításon (ABC) alapuló, a generatív mesterséges intelligencia sajátos gazdaságtanára szabott formális teljes bekerülési költség (TCO) keretrendszert mutat be. Modellezi az LLM-specifikus költségtényezőket – például a tokenfogyasztást, a kereséssel kiegészített generálás (RAG) műveleteit és az ágensalapú következtetési lépéseket –, egyesítve egy bizonyíthatóan konvex infrastruktúra-költségmotort egy működési és irányítási taxonómiával. A termelési környezetekben, 5% alatti előrejelzési hibával validált keretrendszer stratégiai döntéstámogatást nyújt az olyan architekturális kompromisszumok értékeléséhez, mint a dinamikus RAG és a finomhangolt modellek összehasonlítása.
+          </p>
           <figure class="entry-figure">
-            <img src="img/activity_based_costing_break_even_chart.png" alt="Break-even analysis chart comparing RAG and Fine-Tuned Models across monthly session volumes" class="entry-image" loading="lazy">
-            <figcaption class="entry-caption">Break-even analysis comparing Retrieval-Augmented Generation (RAG) against Fine-Tuned Models (FTM) across monthly session volumes.</figcaption>
+            <img src="img/activity_based_costing_break_even_chart.png" alt="Break-even analysis chart comparing RAG and Fine-Tuned Models across monthly session volumes" class="entry-image" loading="lazy" data-alt-en="Break-even analysis chart comparing RAG and Fine-Tuned Models across monthly session volumes" data-alt-hu="Fedezeti pont elemzési grafikon a RAG és a finomhangolt modellek összehasonlítására havi munkamenetszám szerint">
+            <figcaption class="entry-caption" data-lang="en">Break-even analysis comparing Retrieval-Augmented Generation (RAG) against Fine-Tuned Models (FTM) across monthly session volumes.</figcaption>
+            <figcaption class="entry-caption" data-lang="hu">Fedezeti pont elemzés: a kereséssel kiegészített generálás (RAG) és a finomhangolt modellek (FTM) összehasonlítása havi munkamenetszám függvényében.</figcaption>
           </figure>
           <div class="entry-actions">
             <a href="https://doi.org/10.1109/ACCESS.2026.3726058" class="badge-link" target="_blank" rel="noopener noreferrer">
@@ -61,18 +92,24 @@
     </section>
 
     <section id="projects" class="section">
-      <h2 class="section-title">Projects</h2>
-      <p class="section-desc">Selected projects and open-source work.</p>
+      <h2 class="section-title">
+        <span data-lang="en">Projects</span>
+        <span data-lang="hu">Projektek</span>
+      </h2>
+      <p class="section-desc" data-lang="en">Selected projects and open-source work.</p>
+      <p class="section-desc" data-lang="hu">Válogatott projektek és nyílt forráskódú munkák.</p>
       <div class="entry-list">
         <article class="entry-item">
           <div class="entry-header">
             <h3 class="entry-title">
               <a href="https://github.com/Smart123s/Smart123s.github.io" target="_blank" rel="noopener noreferrer">
-                Personal Website
+                <span data-lang="en">Personal Website</span>
+                <span data-lang="hu">Személyes weboldal</span>
               </a>
             </h3>
           </div>
-          <p class="entry-desc">A minimalist, accessible, responsive personal website built with pure HTML and CSS.</p>
+          <p class="entry-desc" data-lang="en">A minimalist, accessible, responsive personal website built with pure HTML and CSS.</p>
+          <p class="entry-desc" data-lang="hu">Minimalista, akadálymentesített, reszponzív személyes weboldal letisztult HTML és CSS technológiával.</p>
           <div class="entry-actions">
             <a href="https://github.com/Smart123s/Smart123s.github.io" class="badge-link" target="_blank" rel="noopener noreferrer">
               GitHub
@@ -83,28 +120,50 @@
     </section>
 
     <section id="education" class="section">
-      <h2 class="section-title">Education</h2>
-      <p class="section-desc">Academic background and studies.</p>
+      <h2 class="section-title">
+        <span data-lang="en">Education</span>
+        <span data-lang="hu">Tanulmányok</span>
+      </h2>
+      <p class="section-desc" data-lang="en">Academic background and studies.</p>
+      <p class="section-desc" data-lang="hu">Akadémiai háttér és tanulmányok.</p>
       <div class="entry-list">
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
               <img src="svg/pannon-egyetem-cimer.svg" alt="University of Pannonia crest" class="institution-logo">
-              <h3 class="entry-title">University of Pannonia</h3>
+              <h3 class="entry-title">
+                <span data-lang="en">University of Pannonia</span>
+                <span data-lang="hu">Pannon Egyetem</span>
+              </h3>
             </div>
           </div>
           <div class="entry-details">
             <ul class="subentry-list">
               <li class="subentry-item">
-                <span class="subentry-title">Data Science MSc</span>
-                <span class="subentry-date">2026 &ndash; Present</span>
+                <span class="subentry-title">
+                  <span data-lang="en">Data Science MSc</span>
+                  <span data-lang="hu">Adattudomány MSc</span>
+                </span>
+                <span class="subentry-date">
+                  <span data-lang="en">2026 &ndash; Present</span>
+                  <span data-lang="hu">2026 &ndash; Jelenleg</span>
+                </span>
               </li>
               <li class="subentry-item">
-                <span class="subentry-title">Business Informatics BSc</span>
-                <span class="subentry-date">2024 &ndash; Present</span>
+                <span class="subentry-title">
+                  <span data-lang="en">Business Informatics BSc</span>
+                  <span data-lang="hu">Gazdaságinformatikus BSc</span>
+                </span>
+                <span class="subentry-date">
+                  <span data-lang="en">2024 &ndash; Present</span>
+                  <span data-lang="hu">2024 &ndash; Jelenleg</span>
+                </span>
               </li>
               <li class="subentry-item">
-                <span class="subentry-title">Computer Science BSc</span>
+                <span class="subentry-title">
+                  <span data-lang="en">Computer Science BSc</span>
+                  <span data-lang="hu">Programtervező informatikus BSc</span>
+                </span>
                 <span class="subentry-date">2023 &ndash; 2026</span>
               </li>
             </ul>
@@ -114,26 +173,41 @@
           <div class="entry-header">
             <div class="entry-title-group">
               <img src="img/lovassy-cimer.webp" alt="Lovassy László crest" class="institution-logo">
-              <h3 class="entry-title">Lovassy László High School</h3>
+              <h3 class="entry-title">
+                <span data-lang="en">Lovassy László High School</span>
+                <span data-lang="hu">Lovassy László Gimnázium</span>
+              </h3>
             </div>
             <span class="entry-date">2018 &ndash; 2023</span>
           </div>
           <div class="entry-details">
-            <p class="entry-meta">Computer Science Specialization</p>
-            <p class="entry-submeta">Advanced Level Matura in Computer Science</p>
+            <p class="entry-meta">
+              <span data-lang="en">Computer Science Specialization</span>
+              <span data-lang="hu">Informatika tagozat</span>
+            </p>
+            <p class="entry-submeta">
+              <span data-lang="en">Advanced Level Matura in Computer Science</span>
+              <span data-lang="hu">Emelt szintű érettségi informatikából</span>
+            </p>
           </div>
         </article>
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
               <img src="img/batsanyi-cimer.png" alt="Batsányi János Bilingual School crest" class="institution-logo">
-              <h3 class="entry-title">Batsányi János Hungarian-English Bilingual Member School of the Bárdos Lajos Primary School, Tapolca</h3>
+              <h3 class="entry-title">
+                <span data-lang="en">Batsányi János Hungarian-English Bilingual Member School of the Bárdos Lajos Primary School, Tapolca</span>
+                <span data-lang="hu">Tapolcai Bárdos Lajos Általános Iskola Batsányi János Magyar-Angol Két Tanítási Nyelvű Tagintézménye</span>
+              </h3>
             </div>
           </div>
           <div class="entry-details">
             <ul class="subentry-list">
               <li class="subentry-item">
-                <span class="subentry-title">English Specialization</span>
+                <span class="subentry-title">
+                  <span data-lang="en">English Specialization</span>
+                  <span data-lang="hu">Angol tagozat</span>
+                </span>
                 <span class="subentry-date">2010 &ndash; 2018</span>
               </li>
             </ul>
@@ -144,7 +218,8 @@
   </main>
 
   <footer>
-    <p>Copyright (C) Péter Tombor 2021-2026. All&nbsp;Rights&nbsp;Reserved.</p>
+    <p data-lang="en">Copyright (C) Péter Tombor 2021-2026. All&nbsp;Rights&nbsp;Reserved.</p>
+    <p data-lang="hu">Copyright (C) Tombor Péter 2021-2026. Minden&nbsp;jog&nbsp;fenntartva.</p>
   </footer>
 </body>
 
