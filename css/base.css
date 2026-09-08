@@ -89,109 +89,180 @@ body {
     position: relative;
     width: 150px;
     height: 150px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: block;
+    outline: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.profile .avatar-main-frame {
+    position: relative;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border-style: solid;
     border-width: 4px;
     border-color: var(--photo-border);
     box-shadow: var(--photo-shadow);
-    padding: 0;
-    margin: 0;
-    background-color: transparent;
+    box-sizing: border-box;
     overflow: hidden;
-    cursor: pointer;
+    z-index: 2;
     display: block;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 }
 
-.profile .profile-avatar:focus-visible {
+.profile .profile-avatar:focus-visible .avatar-main-frame {
     outline: 2px solid var(--link-color);
     outline-offset: 3px;
 }
 
-.profile .profile-avatar:hover {
-    transform: scale(1.04);
+.profile .profile-avatar:hover .avatar-main-frame {
+    transform: scale(1.02);
 }
 
-.profile .profile-avatar:active {
+.profile .profile-avatar:active .avatar-main-frame {
     transform: scale(0.98);
 }
 
-.profile .avatar-layer {
+/* Images inside main frame */
+.profile .avatar-img {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
     pointer-events: none;
     display: block;
-    transition: clip-path 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
-/* State: Real photo is active, Minecraft avatar peeks out */
-.profile .profile-avatar[data-active="real"] .avatar-real {
+/* Handle / Pull-tab tucked behind bottom-right */
+.profile .avatar-handle {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--photo-border);
+    box-shadow: var(--photo-shadow);
+    box-sizing: border-box;
+    overflow: hidden;
     z-index: 1;
-    clip-path: none;
+    display: block;
+    transform: translate(-7px, -7px);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.profile .profile-avatar:hover .avatar-handle {
+    transform: translate(12px, 12px) scale(1.06);
+}
+
+.profile .avatar-handle .handle-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+/* State: Real photo is active */
+.profile .profile-avatar[data-active="real"] .avatar-real {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
 }
 
 .profile .profile-avatar[data-active="real"] .avatar-mc {
-    z-index: 2;
-    clip-path: polygon(100% 55%, 55% 100%, 100% 100%);
-    filter: drop-shadow(-3px -3px 4px rgba(0, 0, 0, 0.45));
-}
-
-.profile .profile-avatar[data-active="real"]:hover:not(.just-swapped) .avatar-mc {
-    clip-path: polygon(100% 25%, 25% 100%, 100% 100%);
-}
-
-/* State: Minecraft avatar is active, Real photo peeks out */
-.profile .profile-avatar[data-active="mc"] .avatar-mc {
+    opacity: 0;
+    transform: scale(0.92);
     z-index: 1;
-    clip-path: none;
+}
+
+.profile .profile-avatar[data-active="real"] .handle-mc {
+    opacity: 1;
+    z-index: 2;
+}
+
+.profile .profile-avatar[data-active="real"] .handle-real {
+    opacity: 0;
+    z-index: 1;
+}
+
+/* State: Minecraft avatar is active */
+.profile .profile-avatar[data-active="mc"] .avatar-mc {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
 }
 
 .profile .profile-avatar[data-active="mc"] .avatar-real {
-    z-index: 2;
-    clip-path: polygon(100% 55%, 55% 100%, 100% 100%);
-    filter: drop-shadow(-3px -3px 4px rgba(0, 0, 0, 0.45));
+    opacity: 0;
+    transform: scale(0.92);
+    z-index: 1;
 }
 
-.profile .profile-avatar[data-active="mc"]:hover:not(.just-swapped) .avatar-real {
-    clip-path: polygon(100% 25%, 25% 100%, 100% 100%);
+.profile .profile-avatar[data-active="mc"] .handle-real {
+    opacity: 1;
+    z-index: 2;
+}
+
+.profile .profile-avatar[data-active="mc"] .handle-mc {
+    opacity: 0;
+    z-index: 1;
 }
 
 /* Swap Animation */
-.profile .avatar-layer.is-revealing {
-    z-index: 3 !important;
-    clip-path: polygon(100% -120%, -120% 100%, 100% 100%) !important;
-    transition: clip-path 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+.profile .profile-avatar.is-animating .avatar-main-frame {
+    animation: avatarPop 0.45s cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
-.profile .profile-avatar.is-animating {
-    animation: avatarPop 0.45s cubic-bezier(0.34, 1.4, 0.64, 1);
+.profile .profile-avatar.is-animating .avatar-handle {
+    animation: handleSwap 0.45s cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
 @keyframes avatarPop {
     0% {
-        transform: scale(1.04) rotate(0deg);
+        transform: scale(1);
     }
     30% {
         transform: scale(0.92) rotate(-4deg);
     }
     65% {
-        transform: scale(1.08) rotate(3deg);
+        transform: scale(1.06) rotate(3deg);
     }
     100% {
-        transform: scale(1.04) rotate(0deg);
+        transform: scale(1);
+    }
+}
+
+@keyframes handleSwap {
+    0% {
+        transform: translate(12px, 12px) scale(1.06);
+    }
+    40% {
+        transform: translate(18px, 18px) scale(1.15);
+    }
+    100% {
+        transform: translate(-7px, -7px) scale(1);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .profile .profile-avatar,
-    .profile .avatar-layer {
+    .profile .avatar-main-frame,
+    .profile .avatar-img,
+    .profile .avatar-handle,
+    .profile .handle-img {
         transition: none !important;
         animation: none !important;
     }

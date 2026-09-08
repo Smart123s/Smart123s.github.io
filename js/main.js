@@ -61,57 +61,23 @@
     var avatarBtn = document.querySelector('.profile-avatar');
     if (avatarBtn) {
       var isSwapping = false;
-      var allowHoverExpand = true;
-
-      function clearJustSwapped() {
-        avatarBtn.classList.remove('just-swapped');
-        allowHoverExpand = true;
-      }
-
-      avatarBtn.addEventListener('mouseleave', clearJustSwapped);
-
-      avatarBtn.addEventListener('mousemove', function() {
-        if (!isSwapping && allowHoverExpand && avatarBtn.classList.contains('just-swapped')) {
-          clearJustSwapped();
-        }
-      });
 
       avatarBtn.addEventListener('click', function() {
         if (isSwapping) return;
         isSwapping = true;
-        allowHoverExpand = false;
-        avatarBtn.classList.add('just-swapped');
 
         var currentActive = avatarBtn.getAttribute('data-active') || 'real';
         var nextActive = currentActive === 'real' ? 'mc' : 'real';
-        var incomingLayer = currentActive === 'real'
-          ? avatarBtn.querySelector('.avatar-mc')
-          : avatarBtn.querySelector('.avatar-real');
 
-        if (incomingLayer) {
-          incomingLayer.classList.add('is-revealing');
-        }
         avatarBtn.classList.add('is-animating');
 
         setTimeout(function() {
           avatarBtn.setAttribute('data-active', nextActive);
-          if (incomingLayer) {
-            incomingLayer.classList.remove('is-revealing');
-          }
+        }, 150);
+
+        setTimeout(function() {
           avatarBtn.classList.remove('is-animating');
           isSwapping = false;
-
-          // Short cooldown so the new avatar can be admired before mouse movement re-expands peek
-          setTimeout(function() {
-            allowHoverExpand = true;
-          }, 350);
-
-          // If user stays hovering without moving mouse, smoothly re-enable hover expansion after 1 second
-          setTimeout(function() {
-            if (avatarBtn.classList.contains('just-swapped')) {
-              clearJustSwapped();
-            }
-          }, 1200);
         }, 450);
       });
     }
