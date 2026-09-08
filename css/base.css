@@ -487,6 +487,59 @@ body {
     width: 100%;
 }
 
+/* Research Entry Split Layout */
+.research-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    margin-top: 14px;
+}
+
+.research-text {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.research-text .entry-desc {
+    margin: 0 0 16px 0;
+}
+
+.research-figure {
+    flex: 0 0 300px;
+    max-width: 300px;
+    width: 100%;
+    margin: 0;
+}
+
+.entry-image-link {
+    display: block;
+    cursor: zoom-in;
+    text-decoration: none;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.entry-image-link .entry-image {
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.entry-image-link:hover .entry-image {
+    opacity: 0.92;
+    border-color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .research-body {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .research-figure {
+        flex: 1 1 auto;
+        max-width: 100%;
+    }
+}
+
 .entry-image {
     max-width: 100%;
     height: auto;
