@@ -643,6 +643,38 @@ body {
     color: var(--text-muted);
 }
 
+/* Skills */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-color);
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.skill-tag:hover {
+    border-color: var(--text-muted);
+}
+
+@media (prefers-color-scheme: dark) {
+    .skill-tag {
+        background-color: rgba(255, 255, 255, 0.04);
+    }
+}
+
 /* Languages & Driving */
 .language-list,
 .driving-list {
