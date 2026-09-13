@@ -436,6 +436,7 @@ body {
 @media (max-width: 600px) {
     .entry-details {
         margin-left: 0;
+        margin-top: 10px;
     }
 }
 
