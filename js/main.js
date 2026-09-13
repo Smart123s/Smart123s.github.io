@@ -1,6 +1,20 @@
 (function() {
+  function safeGetStorage(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function safeSetStorage(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {}
+  }
+
   function getPreferredLanguage() {
-    var stored = localStorage.getItem('lang');
+    var stored = safeGetStorage('lang');
     if (stored === 'hu' || stored === 'en') {
       return stored;
     }
@@ -14,7 +28,8 @@
   }
 
   // Replace no-js class with js
-  document.documentElement.classList.replace('no-js', 'js');
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
 
   // Set document language immediately to prevent layout shift or content flicker
   var initialLang = getPreferredLanguage();
@@ -70,6 +85,13 @@
       if (title) {
         rotator.setAttribute('title', title);
       }
+      var activeWord = rotator.querySelector('.role-rotator-word.is-active');
+      if (activeWord) {
+        var activeText = (activeWord.innerText || activeWord.textContent || '').trim();
+        if (activeText) {
+          rotator.setAttribute('aria-label', activeText);
+        }
+      }
     });
 
     document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
@@ -87,9 +109,14 @@
   var currentRoleIndex = 0;
   var isSwapping = false;
   var hasInteracted = false;
+  var wiggleFallbackTimer = null;
 
   function stopHandleWiggle() {
     hasInteracted = true;
+    if (wiggleFallbackTimer) {
+      clearTimeout(wiggleFallbackTimer);
+      wiggleFallbackTimer = null;
+    }
     var handle = document.querySelector('.avatar-handle');
     if (handle) {
       handle.classList.remove('is-wiggling');
@@ -109,7 +136,7 @@
         handle.removeEventListener('animationend', removeWiggle);
       };
       handle.addEventListener('animationend', removeWiggle);
-      setTimeout(function() {
+      wiggleFallbackTimer = setTimeout(function() {
         handle.classList.remove('is-wiggling');
       }, 25000);
     }
@@ -120,6 +147,32 @@
     if (scrollArrow && !scrollArrow.classList.contains('is-bouncing')) {
       scrollArrow.classList.add('is-bouncing');
     }
+  }
+
+  function copyTextToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function(resolve, reject) {
+      try {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        var success = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        if (success) {
+          resolve();
+        } else {
+          reject(new Error('execCommand copy failed'));
+        }
+      } catch (err) {
+        reject(err);
+      }
+    });
   }
 
   function updateRotatorWidth(immediate) {
@@ -162,6 +215,12 @@
           w.classList.toggle('is-active', isActive);
           w.classList.remove('is-prev');
           w.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+          if (isActive) {
+            var activeText = (w.innerText || w.textContent || '').trim();
+            if (activeText) {
+              rotator.setAttribute('aria-label', activeText);
+            }
+          }
         });
         return;
       }
@@ -179,6 +238,10 @@
         newWord.classList.remove('is-prev');
         newWord.classList.add('is-active');
         newWord.setAttribute('aria-hidden', 'false');
+        var newText = (newWord.innerText || newWord.textContent || '').trim();
+        if (newText) {
+          rotator.setAttribute('aria-label', newText);
+        }
       }
     });
 
@@ -223,7 +286,6 @@
 
   function init() {
     applyLanguage(document.documentElement.lang || 'en');
-    updateRotatorWidth(true);
 
     var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     var avatarBtn = document.querySelector('.profile-avatar');
@@ -257,11 +319,15 @@
       });
     });
 
-    // Subtle handle wiggle hint at load (repeats 6 times)
-    setTimeout(triggerHandleWiggle, 1400);
+    // Subtle handle wiggle hint at load (repeats 6 times) if hero avatar exists
+    if (document.querySelector('.avatar-handle')) {
+      setTimeout(triggerHandleWiggle, 1400);
+    }
 
-    // Scroll arrow bouncing starts after 3s
-    setTimeout(startScrollBounce, 3000);
+    // Scroll arrow bouncing starts after 3s if scroll arrow exists
+    if (document.querySelector('.scroll-arrow')) {
+      setTimeout(startScrollBounce, 3000);
+    }
 
     window.addEventListener('resize', function() {
       updateRotatorWidth(true);
@@ -277,7 +343,7 @@
       btn.addEventListener('click', function() {
         var targetLang = this.getAttribute('data-lang-target');
         if (targetLang) {
-          localStorage.setItem('lang', targetLang);
+          safeSetStorage('lang', targetLang);
           applyLanguage(targetLang);
         }
       });
@@ -289,14 +355,15 @@
         var targetEl = targetSelector ? document.querySelector(targetSelector) : null;
         if (!targetEl) return;
         var text = (targetEl.innerText || targetEl.textContent || '').trim();
-        navigator.clipboard.writeText(text).then(function() {
+        copyTextToClipboard(text).then(function() {
           btn.classList.add('is-copied');
           var isHu = document.documentElement.lang === 'hu';
           btn.setAttribute('aria-label', isHu ? 'Másolva a vágólapra' : 'Copied to clipboard');
           if (btn._copyTimeout) clearTimeout(btn._copyTimeout);
           btn._copyTimeout = setTimeout(function() {
             btn.classList.remove('is-copied');
-            btn.setAttribute('aria-label', isHu ? 'Kód másolása a vágólapra' : 'Copy code to clipboard');
+            var currentIsHu = document.documentElement.lang === 'hu';
+            btn.setAttribute('aria-label', currentIsHu ? 'Kód másolása a vágólapra' : 'Copy code to clipboard');
           }, 2000);
         }).catch(function(err) {
           console.error('Failed to copy text: ', err);
