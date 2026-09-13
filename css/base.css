@@ -620,6 +620,21 @@ body {
     }
 }
 
+@media (max-height: 500px) {
+    .scroll-indicator {
+        left: auto;
+        right: max(32px, env(safe-area-inset-right));
+        bottom: max(20px, env(safe-area-inset-bottom));
+        transform: none;
+    }
+}
+
+@media (max-height: 500px) and (max-width: 640px), (max-height: 280px) {
+    .scroll-indicator {
+        display: none;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
