@@ -303,6 +303,64 @@ body {
     }
 }
 
+/* Avatar fallback when JS is not enabled */
+.no-js .profile .profile-avatar {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    cursor: default;
+}
+
+.no-js .profile .avatar-main-frame {
+    position: relative;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.no-js .profile .avatar-handle {
+    cursor: pointer;
+    z-index: 2 !important;
+    animation: none !important;
+    transition: width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                height 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-width 0.35s ease,
+                transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.35s ease;
+}
+
+.no-js .profile .profile-avatar:focus-visible .avatar-handle {
+    transform: translate(-7px, -7px);
+}
+
+.no-js .profile .profile-avatar:hover .avatar-main-frame {
+    transform: none;
+}
+
+.no-js .profile .avatar-main-frame:hover {
+    transform: scale(1.02);
+}
+
+.no-js .profile .profile-avatar .avatar-handle:hover {
+    width: 150px;
+    height: 150px;
+    border-width: 4px;
+    transform: translateX(83px) translateY(0);
+    z-index: 10 !important;
+}
+
+.no-js .profile .profile-avatar .avatar-handle:hover + .avatar-main-frame {
+    transform: translateX(-83px);
+}
+
+@media (max-width: 360px) {
+    .no-js .profile .profile-avatar .avatar-handle:hover {
+        transform: translateX(79px) translateY(0);
+    }
+
+    .no-js .profile .profile-avatar .avatar-handle:hover + .avatar-main-frame {
+        transform: translateX(-79px);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .profile .avatar-main-frame,
     .profile .avatar-img,
