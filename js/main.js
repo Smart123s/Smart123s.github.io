@@ -258,7 +258,7 @@
     });
 
     // Subtle handle wiggle hint at load (repeats 6 times)
-    setTimeout(triggerHandleWiggle, 2400);
+    setTimeout(triggerHandleWiggle, 1400);
 
     // Scroll arrow bouncing starts after 3s
     setTimeout(startScrollBounce, 3000);
