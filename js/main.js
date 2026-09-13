@@ -65,6 +65,13 @@
       }
     }
 
+    document.querySelectorAll('.role-rotator').forEach(function(rotator) {
+      var title = isHu ? rotator.getAttribute('data-title-hu') : rotator.getAttribute('data-title-en');
+      if (title) {
+        rotator.setAttribute('title', title);
+      }
+    });
+
     document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
       var isCopied = btn.classList.contains('is-copied');
       if (isCopied) {
@@ -75,95 +82,43 @@
     });
 
     updateRotatorWidth(true);
-    updateRotatorTitles();
   }
 
   var currentRoleIndex = 0;
-  var roleRotatorTimer = null;
-  var roleRotatorStep = 0;
-  var isRotatorPaused = false;
-  var ROTATOR_DELAYS = [1800, 2400, 3000, 4000];
-  var ROTATOR_DEFAULT_DELAY = 4000;
+  var isSwapping = false;
+  var hasInteracted = false;
 
-  function getNextRotatorDelay() {
-    if (roleRotatorStep < ROTATOR_DELAYS.length) {
-      return ROTATOR_DELAYS[roleRotatorStep];
+  function stopHandleWiggle() {
+    hasInteracted = true;
+    var handle = document.querySelector('.avatar-handle');
+    if (handle) {
+      handle.classList.remove('is-wiggling');
     }
-    return ROTATOR_DEFAULT_DELAY;
   }
 
-  function scheduleNextRoleSwap() {
-    if (isRotatorPaused) return;
-    if (roleRotatorTimer) {
-      clearTimeout(roleRotatorTimer);
-      roleRotatorTimer = null;
-    }
+  function triggerHandleWiggle() {
+    if (hasInteracted) return;
     var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    var delay = getNextRotatorDelay();
-    roleRotatorTimer = setTimeout(function() {
-      if (document.hidden || isRotatorPaused) {
-        scheduleNextRoleSwap();
-        return;
-      }
-      var nextIndex = currentRoleIndex === 0 ? 1 : 0;
-      setRoleIndex(nextIndex, true);
-      roleRotatorStep++;
-      scheduleNextRoleSwap();
-    }, delay);
-  }
-
-  function pauseRoleRotator() {
-    if (isRotatorPaused) return;
-    isRotatorPaused = true;
-    if (roleRotatorTimer) {
-      clearTimeout(roleRotatorTimer);
-      roleRotatorTimer = null;
-    }
-    var profileEl = document.querySelector('.profile');
-    if (profileEl) {
-      profileEl.setAttribute('data-rotator-paused', 'true');
-    }
-    updateRotatorTitles();
-  }
-
-  function resumeRoleRotator() {
-    if (!isRotatorPaused) return;
-    isRotatorPaused = false;
-    var profileEl = document.querySelector('.profile');
-    if (profileEl) {
-      profileEl.removeAttribute('data-rotator-paused');
-    }
-    updateRotatorTitles();
-    var nextIndex = currentRoleIndex === 0 ? 1 : 0;
-    setRoleIndex(nextIndex, true);
-    scheduleNextRoleSwap();
-  }
-
-  function toggleRoleRotator() {
-    if (isRotatorPaused) {
-      resumeRoleRotator();
-    } else {
-      pauseRoleRotator();
+    var handle = document.querySelector('.avatar-handle');
+    if (handle) {
+      handle.classList.add('is-wiggling');
+      var removeWiggle = function() {
+        handle.classList.remove('is-wiggling');
+        handle.removeEventListener('animationend', removeWiggle);
+      };
+      handle.addEventListener('animationend', removeWiggle);
+      setTimeout(function() {
+        handle.classList.remove('is-wiggling');
+      }, 25000);
     }
   }
 
-  function updateRotatorTitles() {
-    var isHu = document.documentElement.lang === 'hu';
-    var title = isRotatorPaused
-      ? (isHu ? 'Kattints az animáció folytatásához' : 'Click to resume animation')
-      : (isHu ? 'Kattints az animáció szüneteltetéséhez' : 'Click to pause animation');
-
-    document.querySelectorAll('.role-rotator').forEach(function(rotator) {
-      rotator.setAttribute('title', title);
-      rotator.setAttribute('aria-pressed', isRotatorPaused ? 'true' : 'false');
-    });
-
-    var resumeBtn = document.querySelector('.resume-rotator-btn');
-    if (resumeBtn) {
-      var btnLabel = isHu ? 'Animáció folytatása' : 'Resume animation';
-      resumeBtn.setAttribute('aria-label', btnLabel);
+  function startScrollBounce() {
+    var scrollArrow = document.querySelector('.scroll-arrow');
+    if (scrollArrow && !scrollArrow.classList.contains('is-bouncing')) {
+      scrollArrow.classList.add('is-bouncing');
     }
   }
 
@@ -231,38 +186,79 @@
     updateRotatorWidth(false);
   }
 
+  function swapAvatarAndRole() {
+    if (isSwapping) return;
+    isSwapping = true;
+
+    var avatarBtn = document.querySelector('.profile-avatar');
+    if (!avatarBtn) {
+      isSwapping = false;
+      return;
+    }
+
+    var currentActive = avatarBtn.getAttribute('data-active') || 'real';
+    var nextActive = currentActive === 'real' ? 'mc' : 'real';
+    var nextRoleIndex = nextActive === 'real' ? 0 : 1;
+
+    avatarBtn.classList.add('is-animating');
+    var handle = avatarBtn.querySelector('.avatar-handle');
+    if (handle) {
+      handle.classList.remove('is-wiggling');
+    }
+
+    setRoleIndex(nextRoleIndex, true);
+
+    setTimeout(function() {
+      avatarBtn.setAttribute('data-active', nextActive);
+    }, 150);
+
+    setTimeout(function() {
+      avatarBtn.classList.remove('is-animating');
+      isSwapping = false;
+    }, 450);
+  }
+
   function init() {
     applyLanguage(document.documentElement.lang || 'en');
     updateRotatorWidth(true);
-    updateRotatorTitles();
-    scheduleNextRoleSwap();
+
+    var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var avatarBtn = document.querySelector('.profile-avatar');
+    if (avatarBtn) {
+      if (canHover) {
+        avatarBtn.addEventListener('mouseenter', stopHandleWiggle);
+      }
+      avatarBtn.addEventListener('focus', stopHandleWiggle);
+      avatarBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        stopHandleWiggle();
+        swapAvatarAndRole();
+      });
+    }
 
     document.querySelectorAll('.role-rotator').forEach(function(rotator) {
+      if (canHover) {
+        rotator.addEventListener('mouseenter', stopHandleWiggle);
+      }
       rotator.addEventListener('click', function(e) {
         e.preventDefault();
-        toggleRoleRotator();
+        stopHandleWiggle();
+        swapAvatarAndRole();
       });
       rotator.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          toggleRoleRotator();
+          stopHandleWiggle();
+          swapAvatarAndRole();
         }
       });
     });
 
-    var resumeBtn = document.querySelector('.resume-rotator-btn');
-    if (resumeBtn) {
-      resumeBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        resumeRoleRotator();
-      });
-    }
+    // Subtle handle wiggle hint at load (repeats 6 times)
+    setTimeout(triggerHandleWiggle, 2400);
 
-    document.addEventListener('visibilitychange', function() {
-      if (!document.hidden && !isRotatorPaused) {
-        scheduleNextRoleSwap();
-      }
-    });
+    // Scroll arrow bouncing starts after 3s
+    setTimeout(startScrollBounce, 3000);
 
     window.addEventListener('resize', function() {
       updateRotatorWidth(true);
@@ -271,45 +267,6 @@
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(function() {
         updateRotatorWidth(true);
-      });
-    }
-
-    if (window.matchMedia) {
-      var mql = window.matchMedia('(prefers-reduced-motion: reduce)');
-      if (mql.addEventListener) {
-        mql.addEventListener('change', function(e) {
-          if (e.matches) {
-            pauseRoleRotator();
-            setRoleIndex(0, false);
-            updateRotatorWidth(true);
-          } else {
-            resumeRoleRotator();
-          }
-        });
-      }
-    }
-
-    var avatarBtn = document.querySelector('.profile-avatar');
-    if (avatarBtn) {
-      var isSwapping = false;
-
-      avatarBtn.addEventListener('click', function() {
-        if (isSwapping) return;
-        isSwapping = true;
-
-        var currentActive = avatarBtn.getAttribute('data-active') || 'real';
-        var nextActive = currentActive === 'real' ? 'mc' : 'real';
-
-        avatarBtn.classList.add('is-animating');
-
-        setTimeout(function() {
-          avatarBtn.setAttribute('data-active', nextActive);
-        }, 150);
-
-        setTimeout(function() {
-          avatarBtn.classList.remove('is-animating');
-          isSwapping = false;
-        }, 450);
       });
     }
 
