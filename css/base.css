@@ -475,6 +475,7 @@ body {
 .no-js .role-rotator {
     display: inline;
     width: auto !important;
+    cursor: default;
 }
 
 .no-js .role-rotator-word {
@@ -487,7 +488,11 @@ body {
 }
 
 .no-js .role-rotator-word:not(.is-active) {
-    display: none !important;
+    display: inline !important;
+}
+
+.no-js .role-rotator-word:not(.is-active)::before {
+    content: " / ";
 }
 
 /* Work Subtitle Responsive Wrapping */
