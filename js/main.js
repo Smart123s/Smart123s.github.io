@@ -206,16 +206,19 @@
       handle.classList.remove('is-wiggling');
     }
 
-    setRoleIndex(nextRoleIndex, true);
-
     setTimeout(function() {
       avatarBtn.setAttribute('data-active', nextActive);
     }, 150);
 
+    // Start text roll animation right after the image animation settles
     setTimeout(function() {
       avatarBtn.classList.remove('is-animating');
+      setRoleIndex(nextRoleIndex, true);
+    }, 400);
+
+    setTimeout(function() {
       isSwapping = false;
-    }, 450);
+    }, 850);
   }
 
   function init() {
