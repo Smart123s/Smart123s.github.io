@@ -1233,6 +1233,10 @@ body {
     display: inline;
 }
 
+.no-js .code-copy-btn {
+    display: none !important;
+}
+
 .code-block-pre {
     margin: 0;
     padding: 12px 14px;
