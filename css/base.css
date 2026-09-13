@@ -438,6 +438,52 @@ body {
         margin-left: 0;
         margin-top: 10px;
     }
+
+    .primary-school-header-date {
+        display: none;
+    }
+
+    .primary-school-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .primary-school-meta-date {
+        display: inline-block;
+    }
+}
+
+@media (min-width: 601px) {
+    .primary-school-header {
+        flex-wrap: nowrap;
+        margin-bottom: 5px;
+    }
+
+    .primary-school-title-group {
+        max-width: calc(100% - 150px);
+        min-width: 0;
+    }
+
+    .primary-school-title-group .entry-title {
+        min-width: 0;
+    }
+
+    .primary-school-header-date {
+        display: inline-block;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .primary-school-meta {
+        display: block;
+    }
+
+    .primary-school-meta-date {
+        display: none;
+    }
 }
 
 .entry-title {
