@@ -1011,6 +1011,15 @@ body {
     color: var(--link-hover);
 }
 
+.badge-stat-icon {
+    height: 14px;
+    width: auto;
+    max-width: 18px;
+    flex-shrink: 0;
+    fill: currentColor;
+    display: inline-block;
+}
+
 /* Sub-entries (e.g. programs under an institution) */
 .subentry-list {
     list-style: none;
