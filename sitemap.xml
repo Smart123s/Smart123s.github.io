@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://tmbpeter.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tmbpeter.com/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://tmbpeter.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tmbpeter.com/" />
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tmbpeter.com/attributions.html</loc>
+    <loc>https://tmbpeter.com/hu/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tmbpeter.com/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://tmbpeter.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tmbpeter.com/" />
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://tmbpeter.com/en/attributions.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tmbpeter.com/en/attributions.html" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://tmbpeter.com/hu/attributions.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tmbpeter.com/en/attributions.html" />
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://tmbpeter.com/hu/attributions.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tmbpeter.com/en/attributions.html" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://tmbpeter.com/hu/attributions.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tmbpeter.com/en/attributions.html" />
     <lastmod>2026-09-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

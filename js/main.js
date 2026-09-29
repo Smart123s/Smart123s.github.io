@@ -13,27 +13,13 @@
     } catch (e) {}
   }
 
-  function getPreferredLanguage() {
-    var stored = safeGetStorage('lang');
-    if (stored === 'hu' || stored === 'en') {
-      return stored;
-    }
-    var langs = navigator.languages || [navigator.language || ''];
-    for (var i = 0; i < langs.length; i++) {
-      var l = (langs[i] || '').toLowerCase();
-      if (l.startsWith('hu')) return 'hu';
-      if (l.startsWith('en')) return 'en';
-    }
-    return 'en';
-  }
-
   // Replace no-js class with js
   document.documentElement.classList.remove('no-js');
   document.documentElement.classList.add('js');
 
-  // Set document language immediately to prevent layout shift or content flicker
-  var initialLang = getPreferredLanguage();
-  document.documentElement.lang = initialLang;
+  // Set document language immediately based on the page's declared lang attribute
+  var pageLang = (document.documentElement.getAttribute('lang') || 'en').toLowerCase().startsWith('hu') ? 'hu' : 'en';
+  document.documentElement.lang = pageLang;
 
   function applyLanguage(lang) {
     document.documentElement.lang = lang;
@@ -66,7 +52,14 @@
     });
 
     document.querySelectorAll('.lang-btn').forEach(function(btn) {
-      var active = btn.getAttribute('data-lang-target') === lang;
+      var target = btn.getAttribute('data-lang-target');
+      if (!target) {
+        var text = (btn.innerText || btn.textContent || '').trim().toLowerCase();
+        if (text === 'en' || text === 'hu') {
+          target = text;
+        }
+      }
+      var active = target === lang;
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
@@ -362,7 +355,6 @@
         var targetLang = this.getAttribute('data-lang-target');
         if (targetLang) {
           safeSetStorage('lang', targetLang);
-          applyLanguage(targetLang);
         }
       });
     });

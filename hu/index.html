@@ -1,66 +1,45 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="hu" class="no-js">
 
 <head>
   <meta charset="UTF-8">
-  <script>
-    (function() {
-      try {
-        var pref = localStorage.getItem('lang');
-        if (pref === 'hu') {
-          window.location.replace('/hu/');
-          return;
-        }
-        if (!pref) {
-          var langs = navigator.languages || [navigator.language || ''];
-          for (var i = 0; i < langs.length; i++) {
-            if ((langs[i] || '').toLowerCase().startsWith('hu')) {
-              localStorage.setItem('lang', 'hu');
-              window.location.replace('/hu/');
-              return;
-            }
-          }
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <title data-title-en="Péter Tombor" data-title-hu="Tombor Péter">Péter Tombor</title>
+<title data-title-en="Péter Tombor" data-title-hu="Tombor Péter">Tombor Péter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="darkreader-lock">
   <meta name="author" content="Péter Tombor">
   <meta name="description" data-desc-en="Personal portfolio and projects of Péter Tombor, Computer Science student and researcher at the University of Pannonia. Explore software projects, research, and open-source contributions." data-desc-hu="Tombor Péter személyes portfóliója és projektjei. A Pannon Egyetem mérnökinformatikus hallgatója és kutatója. Szoftverprojektek, kutatások és nyílt forráskódú hozzájárulások." content="Personal portfolio and projects of Péter Tombor, Computer Science student and researcher at the University of Pannonia. Explore software projects, research, and open-source contributions.">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#131313" media="(prefers-color-scheme: dark)">
-  <link rel="canonical" href="https://tmbpeter.com/">
+  <link rel="canonical" href="https://tmbpeter.com/hu/">
   <link rel="alternate" hreflang="en" href="https://tmbpeter.com/">
   <link rel="alternate" hreflang="hu" href="https://tmbpeter.com/hu/">
   <link rel="alternate" hreflang="x-default" href="https://tmbpeter.com/">
 
   <!-- Open Graph / Facebook / LinkedIn / Discord -->
   <meta property="og:type" content="profile">
-  <meta property="og:url" content="https://tmbpeter.com/">
-  <meta property="og:title" content="Péter Tombor – Software Developer & Researcher">
-  <meta property="og:description" content="Personal portfolio and projects of Péter Tombor, Computer Science student and researcher at the University of Pannonia. Explore software projects, research, and open-source contributions.">
+  <meta property="og:url" content="https://tmbpeter.com/hu/">
+  <meta property="og:title" content="Tombor Péter – Szoftverfejlesztő és Kutató">
+  <meta property="og:description" content="Tombor Péter személyes portfóliója és projektjei. A Pannon Egyetem mérnökinformatikus hallgatója és kutatója. Szoftverprojektek, kutatások és nyílt forráskódú hozzájárulások.">
   <meta property="og:image" content="https://tmbpeter.com/img/profile-512w.jpg">
-  <meta property="og:site_name" content="Péter Tombor">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:locale:alternate" content="hu_HU">
+  <meta property="og:site_name" content="Tombor Péter">
+  <meta property="og:locale" content="hu_HU">
+  <meta property="og:locale:alternate" content="en_US">
 
   <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@Smart123s">
   <meta name="twitter:creator" content="@Smart123s">
-  <meta name="twitter:title" content="Péter Tombor – Software Developer & Researcher">
-  <meta name="twitter:description" content="Personal portfolio and projects of Péter Tombor, Computer Science student and researcher at the University of Pannonia. Explore software projects, research, and open-source contributions.">
+  <meta name="twitter:title" content="Tombor Péter – Szoftverfejlesztő és Kutató">
+  <meta name="twitter:description" content="Tombor Péter személyes portfóliója és projektjei. A Pannon Egyetem mérnökinformatikus hallgatója és kutatója. Szoftverprojektek, kutatások és nyílt forráskódú hozzájárulások.">
   <meta name="twitter:image" content="https://tmbpeter.com/img/profile-512w.jpg">
 
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="preload" as="image" href="img/profile-512w.jpg">
-  <link rel="stylesheet" href="css/base.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="preload" as="image" href="../img/profile-512w.jpg">
+  <link rel="stylesheet" href="../css/base.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Concert+One&family=Inter:wght@400;500;600;700&display=swap">
-  <script src="js/main.js"></script>
+  <script src="../js/main.js"></script>
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -113,21 +92,21 @@
 
 <body>
   <header class="profile-hero" id="top">
-    <nav class="lang-switch" aria-label="Language selector">
-      <span class="lang-btn active" data-lang-target="en" aria-current="page">EN</span>
+    <nav class="lang-switch" aria-label="Nyelvválasztó">
+      <a href="/" class="lang-btn" data-lang-target="en" aria-label="Switch to English">EN</a>
       <span class="lang-divider" aria-hidden="true">/</span>
-      <a href="/hu/" class="lang-btn" data-lang-target="hu" aria-label="Váltás magyar nyelvre">HU</a>
+      <span class="lang-btn active" data-lang-target="hu" aria-current="page">HU</span>
     </nav>
 
     <div class="profile">
       <button type="button" class="profile-avatar" data-active="real" aria-label="Switch avatar" title="Click to swap avatar" data-label-en="Switch avatar" data-label-hu="Avatar váltása">
         <span class="avatar-handle" aria-hidden="true">
-          <img src="img/Smart123s.jpg" class="handle-img handle-mc" alt="">
-          <img src="img/profile-512w.jpg" class="handle-img handle-real" alt="">
+          <img src="../img/Smart123s.jpg" class="handle-img handle-mc" alt="">
+          <img src="../img/profile-512w.jpg" class="handle-img handle-real" alt="">
         </span>
         <span class="avatar-main-frame">
-          <img src="img/profile-512w.jpg" class="avatar-img avatar-real" alt="Péter Tombor" data-alt-en="Profile picture of Péter Tombor" data-alt-hu="Tombor Péter profilképe" width="150" height="150">
-          <img src="img/Smart123s.jpg" class="avatar-img avatar-mc" alt="Smart123s Minecraft Avatar" data-alt-en="Minecraft avatar of Smart123s" data-alt-hu="Smart123s Minecraft avatarja" width="150" height="150">
+          <img src="../img/profile-512w.jpg" class="avatar-img avatar-real" alt="Péter Tombor" data-alt-en="Profile picture of Péter Tombor" data-alt-hu="Tombor Péter profilképe" width="150" height="150">
+          <img src="../img/Smart123s.jpg" class="avatar-img avatar-mc" alt="Smart123s Minecraft Avatar" data-alt-en="Minecraft avatar of Smart123s" data-alt-hu="Smart123s Minecraft avatarja" width="150" height="150">
         </span>
       </button>
       <h1 class="name">
@@ -135,8 +114,8 @@
         <span data-lang="hu">Tombor Péter</span>
       </h1>
       <p class="work">
-        <span data-lang="en"><span class="work-line-1"><img src="svg/graduation-cap-solid.svg" class="graduation-cap" alt="" title="Source: https://fontawesome.com/v6.0/icons?q=graduation&s=solid%2Cbrands"> <span class="role-rotator" role="button" tabindex="0" aria-label="Student / Researcher" title="Click to swap" data-title-en="Click to swap" data-title-hu="Kattints a váltáshoz"><span class="role-rotator-word is-active" aria-hidden="false">Student</span><span class="role-rotator-word" aria-hidden="true">Researcher</span></span> at</span> <span class="work-org">University of Pannonia</span></span>
-        <span data-lang="hu"><span class="work-line-1"><img src="svg/graduation-cap-solid.svg" class="graduation-cap" alt="" title="Source: https://fontawesome.com/v6.0/icons?q=graduation&s=solid%2Cbrands"> A Pannon Egyetem</span> <span class="role-rotator" role="button" tabindex="0" aria-label="hallgatója / kutatója" title="Kattints a váltáshoz" data-title-en="Click to swap" data-title-hu="Kattints a váltáshoz"><span class="role-rotator-word is-active" aria-hidden="false">hallgatója</span><span class="role-rotator-word" aria-hidden="true">kutatója</span></span></span>
+        <span data-lang="en"><span class="work-line-1"><img src="../svg/graduation-cap-solid.svg" class="graduation-cap" alt="" title="Source: https://fontawesome.com/v6.0/icons?q=graduation&s=solid%2Cbrands"> <span class="role-rotator" role="button" tabindex="0" aria-label="Student / Researcher" title="Click to swap" data-title-en="Click to swap" data-title-hu="Kattints a váltáshoz"><span class="role-rotator-word is-active" aria-hidden="false">Student</span><span class="role-rotator-word" aria-hidden="true">Researcher</span></span> at</span> <span class="work-org">University of Pannonia</span></span>
+        <span data-lang="hu"><span class="work-line-1"><img src="../svg/graduation-cap-solid.svg" class="graduation-cap" alt="" title="Source: https://fontawesome.com/v6.0/icons?q=graduation&s=solid%2Cbrands"> A Pannon Egyetem</span> <span class="role-rotator" role="button" tabindex="0" aria-label="hallgatója / kutatója" title="Kattints a váltáshoz" data-title-en="Click to swap" data-title-hu="Kattints a váltáshoz"><span class="role-rotator-word is-active" aria-hidden="false">hallgatója</span><span class="role-rotator-word" aria-hidden="true">kutatója</span></span></span>
       </p>
     </div>
     <a href="#work" class="scroll-indicator" aria-label="Scroll down to content">
@@ -210,7 +189,7 @@
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
-              <img src="svg/pannon-egyetem-cimer.svg" alt="University of Pannonia crest" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="University of Pannonia crest" data-alt-hu="Pannon Egyetem címere">
+              <img src="../svg/pannon-egyetem-cimer.svg" alt="University of Pannonia crest" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="University of Pannonia crest" data-alt-hu="Pannon Egyetem címere">
               <h3 class="entry-title">
                 <span data-lang="en">University of Pannonia</span>
                 <span data-lang="hu">Pannon Egyetem</span>
@@ -250,7 +229,7 @@
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
-              <img src="img/bluemin-logo.png" alt="Bluemin Kft. logo" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Bluemin Kft. logo" data-alt-hu="Bluemin Kft. logó">
+              <img src="../img/bluemin-logo.png" alt="Bluemin Kft. logo" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Bluemin Kft. logo" data-alt-hu="Bluemin Kft. logó">
               <h3 class="entry-title">Bluemin Kft.</h3>
             </div>
             <span class="entry-date">2023 &ndash; 2025</span>
@@ -336,7 +315,7 @@
           <p class="entry-desc" data-lang="hu">Versenyszerű Minecraft PvP minijáték plugin dinamikus, leltárérték-alapú vérdíj-számítással, felszereléseket és varázslatokat kínáló GUI bolttal, valamint a győzelmet jelentő gyémánt megvásárlására épülő játékmenettel.</p>
           <figure class="entry-figure">
             <a href="img/upgradepvp_screenshot.webp" target="_blank" class="entry-image-link" title="Click to view full-size screenshot" data-title-en="Click to view full-size screenshot" data-title-hu="Kattints a teljes méretű képernyőkép megtekintéséhez">
-              <img src="img/upgradepvp_screenshot.webp" alt="UpgradePvP gameplay screenshot showing the kill reward algorithm and balance scoreboard" class="entry-image" loading="lazy" data-alt-en="UpgradePvP gameplay screenshot showing the kill reward algorithm and balance scoreboard" data-alt-hu="UpgradePvP játékmenet képernyőkép a vérdíj-számító algoritmus és az egyenleg-eredményjelző bemutatásával" width="1920" height="1080">
+              <img src="../img/upgradepvp_screenshot.webp" alt="UpgradePvP gameplay screenshot showing the kill reward algorithm and balance scoreboard" class="entry-image" loading="lazy" data-alt-en="UpgradePvP gameplay screenshot showing the kill reward algorithm and balance scoreboard" data-alt-hu="UpgradePvP játékmenet képernyőkép a vérdíj-számító algoritmus és az egyenleg-eredményjelző bemutatásával" width="1920" height="1080">
             </a>
             <figcaption class="entry-caption" data-lang="en">Gameplay screenshot showing dynamic kill rewards below player names and the live balance scoreboard.</figcaption>
             <figcaption class="entry-caption" data-lang="hu">Játékmenet képernyőkép a játékosok neve alatti dinamikus vérdíjakkal és az élő egyenleg-eredményjelzővel.</figcaption>
@@ -367,7 +346,7 @@
           <p class="entry-desc" data-lang="hu">Technikai reverse engineering cikk az Android alkalmazások belső működéséről és a mentési adatok módosításáról rootolt eszközökön. Elemzi a Pou játékállás XML/JSON shared preferences struktúráját, bemutatja az ellenőrzőösszeg-alapú integritásvédelmi mechanizmust (anti-tamper hash ellenőrzés), és szemlélteti az értékek biztonságos szerkesztését a mentés visszaállítása nélkül.</p>
           <figure class="entry-figure screenshot-figure">
             <a href="img/pou_screenshot.png" target="_blank" class="entry-image-link" title="Click to view full-size screenshot" data-title-en="Click to view full-size screenshot" data-title-hu="Kattints a teljes méretű képernyőkép megtekintéséhez">
-              <img src="img/pou_screenshot.png" alt="In-game screenshot of Pou showing successfully modified coins" class="entry-image" loading="lazy" data-alt-en="In-game screenshot of Pou showing successfully modified coins" data-alt-hu="Játékbeli képernyőkép a Pou-ról a sikeresen módosított érmékkel" width="1079" height="1307">
+              <img src="../img/pou_screenshot.png" alt="In-game screenshot of Pou showing successfully modified coins" class="entry-image" loading="lazy" data-alt-en="In-game screenshot of Pou showing successfully modified coins" data-alt-hu="Játékbeli képernyőkép a Pou-ról a sikeresen módosított érmékkel" width="1079" height="1307">
             </a>
             <figcaption class="entry-caption" data-lang="en">In-game screenshot showing 20,000,457 coins after modifying the preferences</figcaption>
             <figcaption class="entry-caption" data-lang="hu">Játékbeli képernyőkép 20.000.457 érmével a beállítások módosítása után.</figcaption>
@@ -412,7 +391,7 @@
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
-              <img src="svg/pannon-egyetem-cimer.svg" alt="University of Pannonia crest" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="University of Pannonia crest" data-alt-hu="Pannon Egyetem címere">
+              <img src="../svg/pannon-egyetem-cimer.svg" alt="University of Pannonia crest" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="University of Pannonia crest" data-alt-hu="Pannon Egyetem címere">
               <h3 class="entry-title">
                 <span data-lang="en">University of Pannonia</span>
                 <span data-lang="hu">Pannon Egyetem</span>
@@ -458,7 +437,7 @@
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
-              <img src="img/lovassy-cimer.webp" alt="Lovassy László crest" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Lovassy László High School crest" data-alt-hu="Lovassy László Gimnázium címere">
+              <img src="../img/lovassy-cimer.webp" alt="Lovassy László crest" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Lovassy László High School crest" data-alt-hu="Lovassy László Gimnázium címere">
               <h3 class="entry-title">
                 <span data-lang="en">Lovassy László High School</span>
                 <span data-lang="hu">Lovassy László Gimnázium</span>
@@ -480,7 +459,7 @@
         <article class="entry-item">
           <div class="entry-header primary-school-header">
             <div class="entry-title-group primary-school-title-group">
-              <img src="img/batsanyi-cimer.png" alt="Batsányi János Bilingual School crest" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Batsányi János Bilingual Primary School crest" data-alt-hu="Batsányi János Két Tanítási Nyelvű Általános Iskola címere">
+              <img src="../img/batsanyi-cimer.png" alt="Batsányi János Bilingual School crest" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Batsányi János Bilingual Primary School crest" data-alt-hu="Batsányi János Két Tanítási Nyelvű Általános Iskola címere">
               <h3 class="entry-title">
                 <span data-lang="en">Batsányi János Hungarian-English Bilingual Member School of the Bárdos Lajos Primary School, Tapolca</span>
                 <span data-lang="hu">Tapolcai Bárdos Lajos Általános Iskola Batsányi János Magyar-Angol Két Tanítási Nyelvű Tagintézménye</span>
@@ -607,7 +586,7 @@
 
             <figure class="entry-figure research-figure">
               <a href="img/semantic_rulers_pca_interpolation.png" target="_blank" class="entry-image-link" title="Click to view full-size chart" data-title-en="Click to view full-size chart" data-title-hu="Kattints a teljes méretű diagram megtekintéséhez">
-                <img src="img/semantic_rulers_pca_interpolation.png" alt="2D PCA projection of semantic embeddings showing continuous level interpolation across target lambda values" class="entry-image" loading="lazy" width="885" height="685" data-alt-en="2D PCA projection of semantic embeddings showing continuous level interpolation across target lambda values" data-alt-hu="Szemantikai beágyazások 2D PCA vetülete, amely folytonos szintinterpolációt mutat a cél lambda értékek mentén">
+                <img src="../img/semantic_rulers_pca_interpolation.png" alt="2D PCA projection of semantic embeddings showing continuous level interpolation across target lambda values" class="entry-image" loading="lazy" width="885" height="685" data-alt-en="2D PCA projection of semantic embeddings showing continuous level interpolation across target lambda values" data-alt-hu="Szemantikai beágyazások 2D PCA vetülete, amely folytonos szintinterpolációt mutat a cél lambda értékek mentén">
               </a>
               <figcaption class="entry-caption" data-lang="en">Continuous level interpolation across target &lambda; values in PCA space.</figcaption>
               <figcaption class="entry-caption" data-lang="hu">Folytonos szintinterpoláció a cél &lambda; értékek mentén a PCA térben.</figcaption>
@@ -642,7 +621,7 @@
 
             <figure class="entry-figure research-figure">
               <a href="img/activity_based_costing_break_even_chart.png" target="_blank" class="entry-image-link" title="Click to view full-size chart" data-title-en="Click to view full-size chart" data-title-hu="Kattints a teljes méretű diagram megtekintéséhez">
-                <img src="img/activity_based_costing_break_even_chart.png" alt="Break-even analysis chart comparing RAG and Fine-Tuned Models across monthly session volumes" class="entry-image" loading="lazy" width="684" height="484" data-alt-en="Break-even analysis chart comparing RAG and Fine-Tuned Models across monthly session volumes" data-alt-hu="Fedezeti pont elemzési grafikon a RAG és a finomhangolt modellek összehasonlítására havi munkamenetszám szerint">
+                <img src="../img/activity_based_costing_break_even_chart.png" alt="Break-even analysis chart comparing RAG and Fine-Tuned Models across monthly session volumes" class="entry-image" loading="lazy" width="684" height="484" data-alt-en="Break-even analysis chart comparing RAG and Fine-Tuned Models across monthly session volumes" data-alt-hu="Fedezeti pont elemzési grafikon a RAG és a finomhangolt modellek összehasonlítására havi munkamenetszám szerint">
               </a>
               <figcaption class="entry-caption" data-lang="en">Break-even analysis comparing Retrieval-Augmented Generation (RAG) against Fine-Tuned Models (FTM) across monthly session volumes.</figcaption>
               <figcaption class="entry-caption" data-lang="hu">Fedezeti pont elemzés: a kereséssel kiegészített generálás (RAG) és a finomhangolt modellek (FTM) összehasonlítása havi munkamenetszám függvényében.</figcaption>
@@ -663,7 +642,7 @@
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
-              <img src="svg/chocolatey-icon.svg" alt="Chocolatey logo" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Chocolatey logo" data-alt-hu="Chocolatey logó">
+              <img src="../svg/chocolatey-icon.svg" alt="Chocolatey logo" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Chocolatey logo" data-alt-hu="Chocolatey logó">
               <h3 class="entry-title">
                 <a href="https://chocolatey.org/profiles/Smart123s" target="_blank">
                   Chocolatey Packages
@@ -689,7 +668,7 @@
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
-              <img src="img/fastlogin-logo.png" alt="FastLogin logo" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="FastLogin logo" data-alt-hu="FastLogin logó">
+              <img src="../img/fastlogin-logo.png" alt="FastLogin logo" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="FastLogin logo" data-alt-hu="FastLogin logó">
               <h3 class="entry-title">
                 <a href="https://github.com/games647/FastLogin" target="_blank">
                   FastLogin
@@ -724,7 +703,7 @@
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
-              <img src="img/ultrawideo-logo.png" alt="UltraWideo logo" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="UltraWideo logo" data-alt-hu="UltraWideo logó">
+              <img src="../img/ultrawideo-logo.png" alt="UltraWideo logo" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="UltraWideo logo" data-alt-hu="UltraWideo logó">
               <h3 class="entry-title">
                 <a href="https://github.com/nnx0r/ultrawideo-v2/pull/44" target="_blank">
                   Ultrawideo
@@ -765,7 +744,7 @@
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
-              <img src="svg/medal-gold.svg" alt="Gold medal icon" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Gold medal icon" data-alt-hu="Aranyérem ikon">
+              <img src="../svg/medal-gold.svg" alt="Gold medal icon" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Gold medal icon" data-alt-hu="Aranyérem ikon">
               <h3 class="entry-title">
                 <span data-lang="en">1st Place &ndash; Árpád Dusza National Programming Memorial Contest</span>
                 <span data-lang="hu">I. helyezés &ndash; Dusza Árpád Országos Programozói Emlékverseny</span>
@@ -784,7 +763,7 @@
         <article class="entry-item">
           <div class="entry-header">
             <div class="entry-title-group">
-              <img src="svg/medal-silver.svg" alt="Silver medal icon" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Silver medal icon" data-alt-hu="Ezüstérem ikon">
+              <img src="../svg/medal-silver.svg" alt="Silver medal icon" class="institution-logo" loading="lazy" width="36" height="36" data-alt-en="Silver medal icon" data-alt-hu="Ezüstérem ikon">
               <h3 class="entry-title">
                 <span data-lang="en">2nd Place &ndash; Árpád Dusza National Programming Memorial Contest</span>
                 <span data-lang="hu">II. helyezés &ndash; Dusza Árpád Országos Programozói Emlékverseny</span>
@@ -812,7 +791,7 @@
       <ul class="language-list">
         <li class="language-item">
           <div class="language-name-group">
-            <img src="svg/flag-hu.svg" alt="Flag of Hungary" class="flag-icon" data-alt-en="Flag of Hungary" data-alt-hu="Magyarország zászlaja" width="24" height="16">
+            <img src="../svg/flag-hu.svg" alt="Flag of Hungary" class="flag-icon" data-alt-en="Flag of Hungary" data-alt-hu="Magyarország zászlaja" width="24" height="16">
             <span class="language-name">
               <span data-lang="en">Hungarian</span>
               <span data-lang="hu">Magyar</span>
@@ -825,7 +804,7 @@
         </li>
         <li class="language-item">
           <div class="language-name-group">
-            <img src="svg/flag-gb.svg" alt="Flag of the United Kingdom" class="flag-icon" data-alt-en="Flag of the United Kingdom" data-alt-hu="Egyesült Királyság zászlaja" width="24" height="16">
+            <img src="../svg/flag-gb.svg" alt="Flag of the United Kingdom" class="flag-icon" data-alt-en="Flag of the United Kingdom" data-alt-hu="Egyesült Királyság zászlaja" width="24" height="16">
             <span class="language-name">
               <span data-lang="en">English</span>
               <span data-lang="hu">Angol</span>
@@ -838,7 +817,7 @@
         </li>
         <li class="language-item">
           <div class="language-name-group">
-            <img src="svg/flag-de.svg" alt="Flag of Germany" class="flag-icon" data-alt-en="Flag of Germany" data-alt-hu="Németország zászlaja" width="24" height="16">
+            <img src="../svg/flag-de.svg" alt="Flag of Germany" class="flag-icon" data-alt-en="Flag of Germany" data-alt-hu="Németország zászlaja" width="24" height="16">
             <span class="language-name">
               <span data-lang="en">German</span>
               <span data-lang="hu">Német</span>
@@ -862,7 +841,7 @@
       <ul class="driving-list">
         <li class="driving-item">
           <div class="driving-name-group">
-            <img src="svg/car-solid.svg" alt="Car" class="driving-icon" data-alt-en="Car icon" data-alt-hu="Autó ikon" width="22" height="22">
+            <img src="../svg/car-solid.svg" alt="Car" class="driving-icon" data-alt-en="Car icon" data-alt-hu="Autó ikon" width="22" height="22">
             <span class="driving-name">
               <span data-lang="en">Category B Drivers License</span>
               <span data-lang="hu">B kategóriás jogosítvány</span>
@@ -887,7 +866,7 @@
       <div class="gpg-card">
         <div class="gpg-header">
           <div class="gpg-header-info">
-            <img src="svg/key-solid.svg" alt="Key icon" class="gpg-icon" data-alt-en="Key icon" data-alt-hu="Kulcs ikon" width="22" height="22">
+            <img src="../svg/key-solid.svg" alt="Key icon" class="gpg-icon" data-alt-en="Key icon" data-alt-hu="Kulcs ikon" width="22" height="22">
             <div>
               <h3 class="gpg-card-title">Péter Tombor (0xE2EF0FE5)</h3>
               <p class="gpg-card-subtitle">
@@ -925,13 +904,13 @@
             <span data-lang="hu">Közvetlen letöltések és kulcsszerver:</span>
           </span>
           <div class="gpg-download-links">
-            <a href="gpg/2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.asc" download="2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.asc" class="badge-link">
+            <a href="../gpg/2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.asc" download="2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.asc" class="badge-link">
               OpenPGP (.asc)
             </a>
-            <a href="gpg/2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.pub" download="2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.pub" class="badge-link">
+            <a href="../gpg/2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.pub" download="2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.pub" class="badge-link">
               OpenSSH (.pub)
             </a>
-            <a href="gpg/2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.gpg" download="2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.gpg" class="badge-link">
+            <a href="../gpg/2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.gpg" download="2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5.gpg" class="badge-link">
               Binary (.gpg)
             </a>
             <a href="https://keys.openpgp.org/vks/v1/by-fingerprint/2FB9B0AA395F85E3D6CD2C78D72C3EDAE2EF0FE5" target="_blank" class="badge-link">
@@ -1040,7 +1019,7 @@ DA==
       <ul class="contact-list">
         <li class="contact-item">
           <a href="mailto:public@tmbpeter.com" class="contact-item-link">
-            <img src="svg/envelope-solid.svg" alt="Email icon" class="contact-icon" data-alt-en="Email icon" data-alt-hu="Email ikon" width="20" height="20">
+            <img src="../svg/envelope-solid.svg" alt="Email icon" class="contact-icon" data-alt-en="Email icon" data-alt-hu="Email ikon" width="20" height="20">
             <div class="contact-details">
               <span class="contact-name">
                 <span data-lang="en">Email</span>
@@ -1052,7 +1031,7 @@ DA==
         </li>
         <li class="contact-item">
           <a href="https://github.com/Smart123s/" class="contact-item-link" target="_blank">
-            <img src="svg/github.svg" alt="GitHub icon" class="contact-icon" data-alt-en="GitHub icon" data-alt-hu="GitHub ikon" width="20" height="20">
+            <img src="../svg/github.svg" alt="GitHub icon" class="contact-icon" data-alt-en="GitHub icon" data-alt-hu="GitHub ikon" width="20" height="20">
             <div class="contact-details">
               <span class="contact-name">GitHub</span>
               <span class="contact-value">https://github.com/Smart123s/</span>
@@ -1061,7 +1040,7 @@ DA==
         </li>
         <li class="contact-item">
           <a href="https://www.linkedin.com/in/p%C3%A9ter-tombor-129088204/" class="contact-item-link" target="_blank">
-            <img src="svg/linkedin.svg" alt="LinkedIn icon" class="contact-icon" data-alt-en="LinkedIn icon" data-alt-hu="LinkedIn ikon" width="20" height="20">
+            <img src="../svg/linkedin.svg" alt="LinkedIn icon" class="contact-icon" data-alt-en="LinkedIn icon" data-alt-hu="LinkedIn ikon" width="20" height="20">
             <div class="contact-details">
               <span class="contact-name">LinkedIn</span>
               <span class="contact-value">https://www.linkedin.com/in/péter-tombor-129088204/</span>
@@ -1070,7 +1049,7 @@ DA==
         </li>
         <li class="contact-item">
           <a href="https://www.facebook.com/TomborPeter" class="contact-item-link" target="_blank">
-            <img src="svg/facebook.svg" alt="Facebook icon" class="contact-icon" data-alt-en="Facebook icon" data-alt-hu="Facebook ikon" width="20" height="20">
+            <img src="../svg/facebook.svg" alt="Facebook icon" class="contact-icon" data-alt-en="Facebook icon" data-alt-hu="Facebook ikon" width="20" height="20">
             <div class="contact-details">
               <span class="contact-name">Facebook</span>
               <span class="contact-value">https://www.facebook.com/TomborPeter</span>
@@ -1079,7 +1058,7 @@ DA==
         </li>
         <li class="contact-item">
           <a href="https://x.com/Smart123s" class="contact-item-link" target="_blank">
-            <img src="svg/x-twitter.svg" alt="X icon" class="contact-icon" data-alt-en="X icon" data-alt-hu="X ikon" width="20" height="20">
+            <img src="../svg/x-twitter.svg" alt="X icon" class="contact-icon" data-alt-en="X icon" data-alt-hu="X ikon" width="20" height="20">
             <div class="contact-details">
               <span class="contact-name">X</span>
               <span class="contact-value">https://x.com/Smart123s</span>
@@ -1092,7 +1071,7 @@ DA==
 
   <footer>
     <p data-lang="en">Copyright (C) Péter Tombor 2021-2026. All&nbsp;Rights&nbsp;Reserved. <a href="/en/attributions.html">View&nbsp;Attributions</a></p>
-    <p data-lang="hu">Copyright (C) Tombor Péter 2021-2026. Minden&nbsp;jog&nbsp;fenntartva. <a href="/hu/attributions.html">Forrásmegjelölések&nbsp;megtekintése</a></p>
+    <p data-lang="hu">Copyright (C) Tombor Péter 2021-2026. Minden&nbsp;jog&nbsp;fenntartva. <a href="attributions.html">Forrásmegjelölések&nbsp;megtekintése</a></p>
   </footer>
 </body>
 

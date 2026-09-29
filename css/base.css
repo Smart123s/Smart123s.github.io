@@ -1697,6 +1697,7 @@ html[lang="hu"] [data-lang="en"] {
     font-size: inherit;
     color: var(--text-muted);
     cursor: pointer;
+    text-decoration: none;
     transition: color 0.2s ease, font-weight 0.2s ease;
 }
 
@@ -1713,10 +1714,6 @@ html[lang="hu"] [data-lang="en"] {
 .lang-divider {
     color: var(--border-color);
     user-select: none;
-}
-
-.no-js .lang-switch {
-    display: none !important;
 }
 
 /* No-JS Warning Indicator & Tooltip */
