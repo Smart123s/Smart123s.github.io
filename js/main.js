@@ -107,13 +107,6 @@
       }
     });
 
-    document.querySelectorAll('.video-load-btn').forEach(function(btn) {
-      var label = isHu ? btn.getAttribute('data-label-hu') : btn.getAttribute('data-label-en');
-      if (label) {
-        btn.setAttribute('aria-label', label);
-      }
-    });
-
     updateRotatorWidth(true);
   }
 
@@ -379,27 +372,6 @@
         }).catch(function(err) {
           console.error('Failed to copy text: ', err);
         });
-      });
-    });
-
-    document.querySelectorAll('.video-load-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var container = btn.closest('.video-container');
-        if (!container) return;
-        var videoId = container.getAttribute('data-video-id');
-        if (!videoId) return;
-        var isHu = document.documentElement.lang === 'hu';
-        var videoTitle = (isHu ? container.getAttribute('data-video-title-hu') : container.getAttribute('data-video-title-en')) || container.getAttribute('data-video-title') || 'YouTube video player';
-        var iframe = document.createElement('iframe');
-        iframe.setAttribute('src', 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoId) + '?autoplay=1');
-        iframe.setAttribute('title', videoTitle);
-        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-        iframe.setAttribute('allowfullscreen', '');
-        iframe.setAttribute('loading', 'lazy');
-        container.innerHTML = '';
-        container.appendChild(iframe);
-        container.classList.add('is-loaded');
       });
     });
   }
