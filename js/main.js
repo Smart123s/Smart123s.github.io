@@ -107,6 +107,20 @@
       }
     });
 
+    var topChip = document.querySelector('.nav-chip-top');
+    if (topChip) {
+      var topLabel = isHu ? topChip.getAttribute('data-label-hu') : topChip.getAttribute('data-label-en');
+      var topTitle = isHu ? topChip.getAttribute('data-title-hu') : topChip.getAttribute('data-title-en');
+      if (topLabel) topChip.setAttribute('aria-label', topLabel);
+      if (topTitle) topChip.setAttribute('title', topTitle);
+    }
+
+    var stickyNav = document.querySelector('.sticky-nav');
+    if (stickyNav) {
+      var navLabel = isHu ? stickyNav.getAttribute('data-label-hu') : stickyNav.getAttribute('data-label-en');
+      if (navLabel) stickyNav.setAttribute('aria-label', navLabel);
+    }
+
     updateRotatorWidth(true);
   }
 
@@ -374,6 +388,101 @@
         });
       });
     });
+
+    initStickyNav();
+  }
+
+  function initStickyNav() {
+    var nav = document.querySelector('.sticky-nav');
+    if (!nav) return;
+
+    var navLinks = nav.querySelectorAll('.nav-chip[href^="#"]');
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.section[id]'));
+    if (!sections.length) return;
+
+    var linkMap = {};
+    navLinks.forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (href && href.length > 1) {
+        var id = href.substring(1);
+        if (id !== 'top') {
+          linkMap[id] = link;
+        }
+      }
+    });
+
+    var navInner = nav.querySelector('.sticky-nav-inner');
+
+    function scrollActiveChipIntoView(activeChip) {
+      if (!navInner) return;
+      var chipLeft = activeChip.offsetLeft;
+      var chipWidth = activeChip.offsetWidth;
+      var scrollLeft = navInner.scrollLeft;
+      var clientWidth = navInner.clientWidth;
+
+      if (chipLeft < (scrollLeft + 30) || (chipLeft + chipWidth) > (scrollLeft + clientWidth - 30)) {
+        var targetScroll = chipLeft - (clientWidth / 2) + (chipWidth / 2);
+        var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        navInner.scrollTo({ left: targetScroll, behavior: prefersReduced ? 'auto' : 'smooth' });
+      }
+    }
+
+    function updateActiveLink() {
+      var scrollY = window.scrollY || window.pageYOffset;
+      var hero = document.querySelector('.profile-hero');
+      var heroBottom = hero ? (hero.offsetTop + hero.offsetHeight - 120) : 300;
+
+      if (scrollY < heroBottom) {
+        navLinks.forEach(function(l) { l.classList.remove('is-active'); });
+        return;
+      }
+
+      var docHeight = document.documentElement.scrollHeight;
+      var winHeight = window.innerHeight;
+      if ((scrollY + winHeight) >= (docHeight - 60)) {
+        navLinks.forEach(function(l) { l.classList.remove('is-active'); });
+        var lastSection = sections[sections.length - 1];
+        if (lastSection && linkMap[lastSection.id]) {
+          linkMap[lastSection.id].classList.add('is-active');
+          scrollActiveChipIntoView(linkMap[lastSection.id]);
+        }
+        return;
+      }
+
+      var currentSection = null;
+      for (var i = 0; i < sections.length; i++) {
+        var rect = sections[i].getBoundingClientRect();
+        if (rect.top <= 140) {
+          currentSection = sections[i];
+        } else {
+          break;
+        }
+      }
+
+      if (currentSection && linkMap[currentSection.id]) {
+        var targetLink = linkMap[currentSection.id];
+        if (!targetLink.classList.contains('is-active')) {
+          navLinks.forEach(function(l) { l.classList.remove('is-active'); });
+          targetLink.classList.add('is-active');
+          scrollActiveChipIntoView(targetLink);
+        }
+      } else {
+        navLinks.forEach(function(l) { l.classList.remove('is-active'); });
+      }
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          updateActiveLink();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateActiveLink();
   }
 
   if (document.readyState === 'loading') {

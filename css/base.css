@@ -721,6 +721,102 @@ body {
     .scroll-arrow.is-bouncing {
         animation: none !important;
     }
+
+    .nav-chip,
+    .sticky-nav {
+        transition: none !important;
+    }
+}
+
+/* Sticky Section Navigation */
+.sticky-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: var(--floating-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--floating-shadow);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.sticky-nav-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 7px 20px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    box-sizing: border-box;
+    scroll-padding: 0 16px;
+}
+
+.sticky-nav-inner::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 11px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.nav-chip:hover {
+    color: var(--heading-color);
+    background-color: var(--item-hover-bg);
+}
+
+.nav-chip:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
+}
+
+.nav-chip.is-active {
+    color: var(--heading-color);
+    font-weight: 600;
+    background-color: var(--item-hover-bg);
+    border-color: var(--border-color);
+}
+
+.nav-chip-top {
+    padding: 5px 9px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .sticky-nav-inner {
+        padding: 6px 12px;
+        gap: 3px;
+    }
+
+    .nav-chip {
+        padding: 4px 9px;
+        font-size: 12px;
+    }
+
+    .nav-chip-top {
+        padding: 4px 8px;
+        font-size: 13px;
+    }
 }
 
 /* Content Container & Sections */
@@ -737,6 +833,7 @@ body {
     padding-bottom: 48px;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 48px;
+    scroll-margin-top: 64px;
 }
 
 .section:last-of-type {
