@@ -52,7 +52,7 @@
       if (descHu && descEn) {
         descMeta.setAttribute('content', isHu ? descHu : descEn);
       } else {
-        descMeta.setAttribute('content', isHu ? 'Tombor Péter személyes weboldala' : "Péter Tombor's personal website");
+        descMeta.setAttribute('content', isHu ? "Tombor Péter személyes portfóliója és projektjei. A Pannon Egyetem mérnökinformatikus hallgatója és kutatója. Szoftverprojektek, kutatások és nyílt forráskódú hozzájárulások." : "Personal portfolio and projects of Péter Tombor, Computer Science student and researcher at the University of Pannonia. Explore software projects, research, and open-source contributions.");
       }
     }
 
