@@ -94,6 +94,10 @@
       }
     });
 
+    document.querySelectorAll('.entry-image-link[data-title-en][data-title-hu]').forEach(function(link) {
+      link.setAttribute('title', isHu ? link.getAttribute('data-title-hu') : link.getAttribute('data-title-en'));
+    });
+
     document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
       var isCopied = btn.classList.contains('is-copied');
       if (isCopied) {
