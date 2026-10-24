@@ -22,35 +22,6 @@
   document.documentElement.lang = pageLang;
 
   function applyLanguage(lang) {
-    document.documentElement.lang = lang;
-    var isHu = lang === 'hu';
-    var titleEl = document.querySelector('title');
-    if (titleEl && titleEl.getAttribute('data-title-hu') && titleEl.getAttribute('data-title-en')) {
-      document.title = isHu ? titleEl.getAttribute('data-title-hu') : titleEl.getAttribute('data-title-en');
-    } else {
-      document.title = isHu ? 'Tombor Péter' : 'Péter Tombor';
-    }
-
-    var descMeta = document.querySelector('meta[name="description"]');
-    if (descMeta) {
-      var descHu = descMeta.getAttribute('data-desc-hu');
-      var descEn = descMeta.getAttribute('data-desc-en');
-      if (descHu && descEn) {
-        descMeta.setAttribute('content', isHu ? descHu : descEn);
-      } else {
-        descMeta.setAttribute('content', isHu ? "Tombor Péter személyes portfóliója és projektjei. A Pannon Egyetem mérnökinformatikus hallgatója és kutatója. Szoftverprojektek, kutatások és nyílt forráskódú hozzájárulások." : "Personal portfolio and projects of Péter Tombor, Computer Science student and researcher at the University of Pannonia. Explore software projects, research, and open-source contributions.");
-      }
-    }
-
-    var scrollLink = document.querySelector('.scroll-indicator');
-    if (scrollLink) {
-      scrollLink.setAttribute('aria-label', isHu ? 'Görgess le a tartalomhoz' : 'Scroll down to content');
-    }
-
-    document.querySelectorAll('[data-alt-en][data-alt-hu]').forEach(function(img) {
-      img.setAttribute('alt', isHu ? img.getAttribute('data-alt-hu') : img.getAttribute('data-alt-en'));
-    });
-
     document.querySelectorAll('.lang-btn').forEach(function(btn) {
       var target = btn.getAttribute('data-lang-target');
       if (!target) {
@@ -64,20 +35,7 @@
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
 
-    var avatarBtn = document.querySelector('.profile-avatar');
-    if (avatarBtn) {
-      var label = isHu ? avatarBtn.getAttribute('data-label-hu') : avatarBtn.getAttribute('data-label-en');
-      if (label) {
-        avatarBtn.setAttribute('aria-label', label);
-        avatarBtn.setAttribute('title', label);
-      }
-    }
-
     document.querySelectorAll('.role-rotator').forEach(function(rotator) {
-      var title = isHu ? rotator.getAttribute('data-title-hu') : rotator.getAttribute('data-title-en');
-      if (title) {
-        rotator.setAttribute('title', title);
-      }
       var activeWord = rotator.querySelector('.role-rotator-word.is-active');
       if (activeWord) {
         var activeText = (activeWord.innerText || activeWord.textContent || '').trim();
@@ -86,33 +44,6 @@
         }
       }
     });
-
-    document.querySelectorAll('.entry-image-link[data-title-en][data-title-hu]').forEach(function(link) {
-      link.setAttribute('title', isHu ? link.getAttribute('data-title-hu') : link.getAttribute('data-title-en'));
-    });
-
-    document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
-      var isCopied = btn.classList.contains('is-copied');
-      if (isCopied) {
-        btn.setAttribute('aria-label', isHu ? 'Másolva a vágólapra' : 'Copied to clipboard');
-      } else {
-        btn.setAttribute('aria-label', isHu ? 'Kód másolása a vágólapra' : 'Copy code to clipboard');
-      }
-    });
-
-    var topChip = document.querySelector('.nav-chip-top');
-    if (topChip) {
-      var topLabel = isHu ? topChip.getAttribute('data-label-hu') : topChip.getAttribute('data-label-en');
-      var topTitle = isHu ? topChip.getAttribute('data-title-hu') : topChip.getAttribute('data-title-en');
-      if (topLabel) topChip.setAttribute('aria-label', topLabel);
-      if (topTitle) topChip.setAttribute('title', topTitle);
-    }
-
-    var stickyNav = document.querySelector('.sticky-nav');
-    if (stickyNav) {
-      var navLabel = isHu ? stickyNav.getAttribute('data-label-hu') : stickyNav.getAttribute('data-label-en');
-      if (navLabel) stickyNav.setAttribute('aria-label', navLabel);
-    }
 
     updateRotatorWidth(true);
   }
@@ -187,12 +118,7 @@
   }
 
   function updateRotatorWidth(immediate) {
-    var currentLang = document.documentElement.lang || 'en';
     document.querySelectorAll('.role-rotator').forEach(function(rotator) {
-      var langContainer = rotator.closest('[data-lang]');
-      if (langContainer && langContainer.getAttribute('data-lang') !== currentLang) {
-        return;
-      }
       var words = rotator.querySelectorAll('.role-rotator-word');
       var activeWord = words[currentRoleIndex] || words[0];
       if (activeWord) {

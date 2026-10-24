@@ -1658,15 +1658,6 @@ footer a:hover {
     color: var(--link-color);
 }
 
-/* Multilingual Support */
-html[lang="en"] [data-lang="hu"] {
-    display: none !important;
-}
-
-html[lang="hu"] [data-lang="en"] {
-    display: none !important;
-}
-
 /* Language Switcher */
 .lang-switch {
     position: absolute;
