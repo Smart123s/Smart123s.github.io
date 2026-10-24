@@ -1126,6 +1126,12 @@ body {
     vertical-align: middle;
 }
 
+.icon-globe {
+    width: 14px;
+    -webkit-mask-image: url("../svg/globe-solid.svg");
+    mask-image: url("../svg/globe-solid.svg");
+}
+
 .icon-github {
     width: 14px;
     -webkit-mask-image: url("../svg/github.svg");
