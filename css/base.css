@@ -69,7 +69,8 @@
     .graduation-cap,
     .driving-icon,
     .contact-icon,
-    .gpg-icon {
+    .gpg-icon,
+    .code-copy-icon.icon-copy {
         -webkit-filter: invert(1);
         filter: invert(1);
     }
@@ -1110,12 +1111,55 @@ body {
 }
 
 .badge-stat-icon {
+    display: inline-block;
     height: 14px;
-    width: auto;
+    width: 14px;
     max-width: 18px;
     flex-shrink: 0;
-    fill: currentColor;
-    display: inline-block;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    vertical-align: middle;
+}
+
+.icon-github {
+    width: 14px;
+    -webkit-mask-image: url("../svg/github.svg");
+    mask-image: url("../svg/github.svg");
+}
+
+.icon-star {
+    width: 16px;
+    -webkit-mask-image: url("../svg/star-solid.svg");
+    mask-image: url("../svg/star-solid.svg");
+}
+
+.icon-code-fork {
+    width: 12px;
+    -webkit-mask-image: url("../svg/code-fork-solid.svg");
+    mask-image: url("../svg/code-fork-solid.svg");
+}
+
+.icon-docker {
+    width: 18px;
+    -webkit-mask-image: url("../svg/docker.svg");
+    mask-image: url("../svg/docker.svg");
+}
+
+.icon-youtube {
+    width: 16px;
+    -webkit-mask-image: url("../svg/youtube.svg");
+    mask-image: url("../svg/youtube.svg");
+}
+
+.icon-medium {
+    width: 18px;
+    -webkit-mask-image: url("../svg/medium.svg");
+    mask-image: url("../svg/medium.svg");
 }
 
 /* Sub-entries (e.g. programs under an institution) */
@@ -1485,6 +1529,10 @@ body {
     height: 14px;
     flex-shrink: 0;
     display: block;
+}
+.icon-no-invert {
+    -webkit-filter: none !important;
+    filter: none !important;
 }
 
 .code-copy-btn .icon-check {
